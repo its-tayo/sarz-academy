@@ -1,0 +1,42 @@
+{
+  "name": "sarz-academy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:its-tayo/sarz-academy.git",
+  "author": "Akindolie Tayo <akindolietayo@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "format": "prettier --write .",
+    "type-check": "tsc --pretty --noEmit",
+    "lint": "eslint . --ext ts --ext tsx --ext js"
+  },
+  "dependencies": {
+    "next": "^10.2.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.0",
+    "twin.macro": "^2.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^15.0.3",
+    "@types/react": "^17.0.5",
+    "@types/react-dom": "^17.0.4",
+    "@types/styled-components": "^5.1.9",
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
+    "autoprefixer": "^10.2.5",
+    "babel-plugin-macros": "^3.1.0",
+    "babel-plugin-styled-components": "^1.12.0",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-react": "^7.23.2",
+    "postcss": "^8.2.15",
+    "prettier": "^2.3.0",
+    "tailwindcss": "^2.1.2",
+    "typescript": "^4.2.4"
+  }
+}
