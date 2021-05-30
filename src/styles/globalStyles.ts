@@ -31,12 +31,20 @@ body {
   color: ${({ theme }) => theme.colors.light};
 }
 
+.direction-rtl {
+  direction: rtl;
+}
+
 .primary-font {
   font-family: 'GraphikRegular', sans-serif;
 }
 
 .secondary-font {
   font-family: 'RoslindaleBold';
+}
+
+.primary-bg {
+  background-color: ${({ theme }) => theme.colors.primary};;
 }
 
 .sz-container {
@@ -68,4 +76,45 @@ body {
 .hero-wrapper-1 {
   background-image: url('/images/patter-1.jpeg');
 }
+
+.marquee-wrapper {
+  .marquee-1 {
+    animation: marquee 15s linear infinite alternate;
+  }
+
+  .marquee-2 {
+    animation: marquee2 15s linear infinite alternate;
+  }
+}
+
+@keyframes marquee {
+  0%, 100% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee2 {
+  0%, 100% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+}
+
+/* Slick Slider start */
+.slick-slider {
+  .slick-dots {
+    ${tw`relative bottom-0 my-8`}
+
+    li button:before {
+      ${tw`text-xs w-3 h-3`}
+      color: ${({ theme }) => theme.colors.light};
+    }
+  }
+}
+/* Slick Slider end */
 `

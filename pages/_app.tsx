@@ -6,6 +6,8 @@ import { theme } from 'src/styles/theme'
 import { GlobalStyle } from 'src/styles/globalStyles'
 
 import 'src/styles/tailwind.css'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 const CustomApp = ({ Component, pageProps }: AppProps) => {
   return (

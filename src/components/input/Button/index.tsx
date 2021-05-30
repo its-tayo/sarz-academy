@@ -1,22 +1,27 @@
 import React, { FC } from 'react'
 
+import { theme } from 'src/styles/theme'
 import { ButtonWrapper } from './styles'
 import { ButtonProps } from 'src/interfaces/input'
+
+const { colors } = theme
 
 const Button: FC<ButtonProps> = ({
   children,
   className = '',
   size = 'medium',
-  btnType = 'solid',
+  type = 'button',
   onClick = () => null,
-  borderColor = '#fff',
-  backgroundColor = '#fff',
+  textColor = colors.primary,
+  borderColor = colors.light,
+  backgroundColor = colors.light,
 }) => (
   <ButtonWrapper
     size={size}
+    type={type}
     onClick={onClick}
-    btnType={btnType}
     className={className}
+    textColor={textColor}
     borderColor={borderColor}
     backgroundColor={backgroundColor}
   >
