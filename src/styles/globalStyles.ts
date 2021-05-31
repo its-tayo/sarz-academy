@@ -44,7 +44,19 @@ body {
 }
 
 .primary-bg {
-  background-color: ${({ theme }) => theme.colors.primary};;
+  background-color: ${({ theme }) => theme.colors.primary};
+}
+
+.alt1-bg {
+  background-color: ${({ theme }) => theme.colors.alt1};
+}
+
+.brown-bg {
+  background-color: #1E171A;
+}
+
+.blackberry-bg {
+  background-color: #210315;
 }
 
 .sz-container {

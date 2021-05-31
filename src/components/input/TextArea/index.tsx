@@ -4,7 +4,7 @@ import { Field, ErrorMessage } from 'formik'
 import { Wrapper } from './styles'
 import { TextFieldProps } from 'src/interfaces/input'
 
-const TextField: FC<TextFieldProps> = ({ label = '', name = '', ...props }) => (
+const TextArea: FC<TextFieldProps> = ({ label = '', name = '', ...props }) => (
   <Wrapper>
     {!!label && (
       <label className="block mb-2.5" htmlFor={name}>
@@ -12,7 +12,14 @@ const TextField: FC<TextFieldProps> = ({ label = '', name = '', ...props }) => (
       </label>
     )}
 
-    <Field id={name} className="field" name={name} {...props} />
+    <Field
+      rows="7"
+      id={name}
+      name={name}
+      as="textarea"
+      className="field"
+      {...props}
+    />
 
     <ErrorMessage name={name}>
       {(errMsg) => <small className="error">{errMsg}</small>}
@@ -20,4 +27,4 @@ const TextField: FC<TextFieldProps> = ({ label = '', name = '', ...props }) => (
   </Wrapper>
 )
 
-export default TextField
+export default TextArea

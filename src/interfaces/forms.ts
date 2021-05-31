@@ -9,3 +9,9 @@ export type DonationFormData = {
 export type NewsletterFormData = {
   email: string
 }
+
+export type ContactFormData = {
+  name: string
+  email: string
+  message: string
+}

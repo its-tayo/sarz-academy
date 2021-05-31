@@ -15,3 +15,4 @@ export { default as DonationCard } from './surfaces/DonationCard'
 
 // forms
 export { default as NewsletterForm } from './forms/NewsletterForm'
+export { default as ContactForm } from './forms/ContactForm'
