@@ -11,6 +11,6 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   backgroundColor?: string
 }
 
-export type TextFieldProps = {
+export type FieldProps = {
   label?: string
 } & InputHTMLAttributes<HTMLInputElement>

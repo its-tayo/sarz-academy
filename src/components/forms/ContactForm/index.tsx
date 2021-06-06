@@ -49,6 +49,7 @@ const ContactForm: FC<FormProps<ContactFormData>> = ({ handleSubmit }) => {
 
             <Button
               type="submit"
+              borderColor="#315C5C"
               disabled={isSubmitting}
               textColor={colors.light}
               backgroundColor="#315C5C"

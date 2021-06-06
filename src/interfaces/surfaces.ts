@@ -1,8 +1,10 @@
 export type ModuleCardProps = {
   title: string
   content: string
-  imageSrc: string
-  backgroundColor: string
+  imageSrc?: string
+  bgImageSrc?: string
+  onClick?: () => void
+  backgroundColor?: string
 }
 
 export type TestimonialCardProps = {

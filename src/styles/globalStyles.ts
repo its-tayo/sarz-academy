@@ -43,8 +43,16 @@ body {
   font-family: 'RoslindaleBold';
 }
 
+.color-primary {
+  color: ${({ theme }) => theme.colors.primary};
+}
+
 .primary-bg {
   background-color: ${({ theme }) => theme.colors.primary};
+}
+
+.light-bg {
+  background-color: ${({ theme }) => theme.colors.light};
 }
 
 .alt1-bg {
@@ -87,6 +95,10 @@ body {
 
 .hero-wrapper-1 {
   background-image: url('/images/patter-1.jpeg');
+}
+
+.hero-wrapper-complete {
+  background-image: url('images/dummy/img5.jpg');
 }
 
 .marquee-wrapper {

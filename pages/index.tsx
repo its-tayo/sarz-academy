@@ -100,9 +100,9 @@ const Home: FC = () => {
             <div className="marquee-1 px-6 mb-3 flex">
               <div className="w-48 flex-shrink-0 mr-4">
                 <Button
-                  borderColor="#263263"
                   textColor={colors.light}
-                  backgroundColor="#263263"
+                  borderColor={colors.alt2}
+                  backgroundColor={colors.alt2}
                 >
                   <span className="secondary-font">Innovation</span>
                 </Button>
@@ -152,9 +152,9 @@ const Home: FC = () => {
 
               <div className="w-48 flex-shrink-0 ml-4">
                 <Button
-                  borderColor="#263263"
                   textColor={colors.light}
-                  backgroundColor="#263263"
+                  borderColor={colors.alt2}
+                  backgroundColor={colors.alt2}
                 >
                   <span className="secondary-font">Innovation</span>
                 </Button>
@@ -189,48 +189,58 @@ const Home: FC = () => {
 
           <Slider>
             <div className="mr-9">
-              <ModuleCard
-                title="Music Production"
-                backgroundColor={colors.error}
-                imageSrc="/images/music-production.png"
-                content="Everything you need to know to make a hit record, wrapped in one session, delivered to you by a certified hit record maker.  Know what works, learn the secrets."
-              />
+              <div className="w-72">
+                <ModuleCard
+                  title="Music Production"
+                  backgroundColor={colors.error}
+                  imageSrc="/images/music-production.png"
+                  content="Everything you need to know to make a hit record, wrapped in one session, delivered to you by a certified hit record maker.  Know what works, learn the secrets."
+                />
+              </div>
             </div>
 
             <div className="mr-9">
-              <ModuleCard
-                title="Legal & Business"
-                backgroundColor="#315C5C"
-                imageSrc="/images/legal-business.png"
-                content="As a creative, you are a living and breathing business enterprise. We teach you how to manage the business & legal sides of the art world."
-              />
+              <div className="w-72">
+                <ModuleCard
+                  title="Legal & Business"
+                  backgroundColor="#315C5C"
+                  imageSrc="/images/legal-business.png"
+                  content="As a creative, you are a living and breathing business enterprise. We teach you how to manage the business & legal sides of the art world."
+                />
+              </div>
             </div>
 
             <div className="mr-9">
-              <ModuleCard
-                title="Talent Management"
-                backgroundColor="#263263"
-                imageSrc="/images/talent-management.png"
-                content="Receive the guidance you need to make it in the entertainment industry. With our well curated courses, you go from an ore to well polished bar of gold."
-              />
+              <div className="w-72">
+                <ModuleCard
+                  title="Talent Management"
+                  backgroundColor={colors.alt2}
+                  imageSrc="/images/talent-management.png"
+                  content="Receive the guidance you need to make it in the entertainment industry. With our well curated courses, you go from an ore to well polished bar of gold."
+                />
+              </div>
             </div>
 
             <div className="mr-9">
-              <ModuleCard
-                title="Publicity and Reputation Management"
-                backgroundColor="#95587D"
-                imageSrc="/images/publicity-reputation.png"
-                content="Building a good name & brand is instrumental to your success as they both improve your overall likeability & income opportunities"
-              />
+              <div className="w-72">
+                <ModuleCard
+                  title="Publicity and Reputation Management"
+                  backgroundColor="#95587D"
+                  imageSrc="/images/publicity-reputation.png"
+                  content="Building a good name & brand is instrumental to your success as they both improve your overall likeability & income opportunities"
+                />
+              </div>
             </div>
 
             <div className="mr-9">
-              <ModuleCard
-                title="Distribution"
-                backgroundColor="#315C5C"
-                imageSrc="/images/distribution.png"
-                content="Building a good name & brand is instrumental to your success as they both improve your overall likeability & income opportunities"
-              />
+              <div className="w-72">
+                <ModuleCard
+                  title="Distribution"
+                  backgroundColor="#315C5C"
+                  imageSrc="/images/distribution.png"
+                  content="Building a good name & brand is instrumental to your success as they both improve your overall likeability & income opportunities"
+                />
+              </div>
             </div>
           </Slider>
         </div>

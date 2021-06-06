@@ -15,3 +15,11 @@ export type ContactFormData = {
   email: string
   message: string
 }
+
+export type RegistrationFormData = {
+  file: any
+  email: string
+  lastName: string
+  firstName: string
+  phoneNumber: string
+}

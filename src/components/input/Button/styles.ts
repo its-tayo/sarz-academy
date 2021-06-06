@@ -14,7 +14,7 @@ export const ButtonWrapper = styled.button<{
   border-color: ${({ borderColor }) => borderColor};
   background-color: ${({ backgroundColor }) => backgroundColor};
 
-  ${({ size }) => size === 'small' && tw``}
+  ${({ size }) => size === 'small' && tw`rounded-full text-sm px-2 py-1`}
   ${({ size }) => size === 'medium' && tw`rounded-full text-lg p-2`}
   ${({ size }) => size === 'large' && tw`rounded-full text-2xl p-3.5`}
 `

@@ -42,6 +42,7 @@ const DonationForm: FC<FormProps<DonationFormData>> = ({ handleSubmit }) => {
             type="submit"
             disabled={isSubmitting}
             textColor={colors.light}
+            borderColor={colors.error}
             backgroundColor={colors.error}
           >
             <span className="secondary-font">Continue</span>
