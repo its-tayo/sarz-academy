@@ -68,7 +68,7 @@ body {
 }
 
 .sz-container {
-  ${tw`max-w-5xl mx-auto`}
+  ${tw`max-w-full sm:max-w-lg md:max-w-5xl mx-auto`}
 }
 
 .hero-wrapper {

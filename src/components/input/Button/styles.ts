@@ -9,7 +9,7 @@ export const ButtonWrapper = styled.button<{
   borderColor: string
   backgroundColor: string
 }>`
-  ${tw`border w-full`};
+  ${tw`border w-full border-solid`};
   color: ${({ textColor }) => textColor};
   border-color: ${({ borderColor }) => borderColor};
   background-color: ${({ backgroundColor }) => backgroundColor};

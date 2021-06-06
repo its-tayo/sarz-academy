@@ -35,10 +35,10 @@ const Home: FC = () => {
       <section className="hero-wrapper hero-wrapper-1 pt-32 bg-repeat bg-center">
         <div className="sz-container px-6 relative z-10">
           <div className="pt-10 pb-8">
-            <h1 className="secondary-font text-4xl">
+            <h1 className="secondary-font text-4xl sm:w-72 sm:mx-auto sm:text-center">
               An Incubator For African Creatives
             </h1>
-            <p className="mt-7 mb-10">
+            <p className="mt-7 mb-10 sm:w-72 sm:mx-auto sm:text-center">
               Break into the music industry through practical and hands-on
               sessions led by industry experts.
             </p>
@@ -49,7 +49,7 @@ const Home: FC = () => {
               </Button>
             </div>
 
-            <div className="mt-16 relative">
+            <div className="mt-16 relative sm:max-w-xs sm:mx-auto">
               <div className="-mr-3">
                 <div className="flex -mx-2 justify-end">
                   <div className="w-36 h-40 px-2">
@@ -96,7 +96,7 @@ const Home: FC = () => {
             how to harness their talent and turn their passions into businesses.
           </p>
 
-          <div className="marquee-wrapper -mx-6 mb-14 overflow-hidden">
+          <div className="marquee-wrapper -mx-6 sm:-mx-12 mb-14 overflow-hidden">
             <div className="marquee-1 px-6 mb-3 flex">
               <div className="w-48 flex-shrink-0 mr-4">
                 <Button
@@ -169,7 +169,7 @@ const Home: FC = () => {
           </div>
 
           <div className="mt-16">
-            <div className="w-4/5 mx-auto h-72 px-2">
+            <div className="w-4/5 sm:w-64 mx-auto h-72 px-2">
               <Image src="/images/dummy/img7.jpg" />
             </div>
           </div>

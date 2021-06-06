@@ -27,11 +27,11 @@ const Sessions: FC = () => (
     <section className="hero-wrapper hero-wrapper-1 pt-32 bg-repeat bg-center">
       <div className="sz-container px-6 relative z-10">
         <div className="pt-10 pb-8">
-          <h1 className="secondary-font text-4xl">
+          <h1 className="secondary-font text-4xl sm:w-72 sm:mx-auto sm:text-center">
             An Incubator For African Creatives
           </h1>
 
-          <p className="mt-7 mb-10">
+          <p className="mt-7 mb-10 sm:w-72 sm:mx-auto sm:text-center">
             Break into the music industry through practical and hands-on
             sessions led by industry experts.
           </p>
@@ -203,7 +203,7 @@ const Sessions: FC = () => (
             learnt, to produce beautiful melodies.
           </p>
 
-          <div className="my-11 h-44 border border-gray-500 rounded-md">
+          <div className="my-11 h-44 sm:h-64 border border-gray-500 rounded-md">
             <iframe
               width="100%"
               height="100%"

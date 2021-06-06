@@ -12,11 +12,11 @@ const AboutUs: FC = () => (
     <section className="hero-wrapper hero-wrapper-1 pt-32 bg-repeat bg-center">
       <div className="sz-container px-6 relative z-10">
         <div className="pt-10 pb-8">
-          <h1 className="secondary-font text-4xl text-center">
+          <h1 className="secondary-font text-4xl text-center sm:w-72 sm:mx-auto">
             About The Sarz Academy
           </h1>
 
-          <div className="mt-8 mb-14 w-full h-44 border border-gray-500 rounded-md">
+          <div className="mt-8 mb-14 w-full h-44 sm:h-64 border border-gray-500 rounded-md">
             <iframe
               width="100%"
               height="100%"
