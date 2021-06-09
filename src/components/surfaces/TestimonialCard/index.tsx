@@ -10,7 +10,7 @@ const TestimonialCard: FC<TestimonialCardProps> = ({
   designation,
 }) => (
   <Wrapper className="w-full text-center mb-6 relative">
-    <div className="image-wrapper h-32 w-32 mx-auto mb-8 rounded-2xl p-0.5">
+    <div className="image-wrapper h-32 md:h-20 w-32 md:w-20 mx-auto mb-8 rounded-2xl p-0.5">
       <img
         src={imageSrc}
         alt={name}

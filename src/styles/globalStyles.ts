@@ -97,6 +97,10 @@ body {
   background-image: url('/images/patter-1.jpeg');
 }
 
+.hero-wrapper-2 {
+  background-image: url('/images/patter-1.jpeg');
+}
+
 .hero-wrapper-complete {
   background-image: url('images/dummy/img5.jpg');
 }
@@ -141,4 +145,18 @@ body {
   }
 }
 /* Slick Slider end */
+
+/* Media query start */
+@media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  .hero-wrapper-1 {
+    ${tw`bg-none`}
+    background-color: ${({ theme }) => theme.colors.primary};
+
+    &::before {
+      ${tw`w-1/2 ml-auto bg-repeat-y bg-center bg-contain`}
+      background-image: url('/images/patter-1.jpeg');
+    }
+  }
+}
+/* Media query end */
 `

@@ -11,4 +11,7 @@ export const theme: DefaultTheme = {
     primary: '#030F17',
     success: '#009E74',
   },
+  breakpoints: {
+    md: '768px',
+  },
 }

@@ -31,20 +31,22 @@ const NewsletterForm: FC<FormProps<NewsletterFormData>> = ({
       validationSchema={validationSchema}
     >
       {({ isSubmitting }) => (
-        <Form>
-          <div className="mb-4">
+        <Form className="md:max-w-xl md:mx-auto md:flex md:flex-wrap">
+          <div className="mb-4 md:mr-4 md:flex-1">
             <TextField name="email" placeholder="Your email" />
           </div>
 
-          <Button
-            type="submit"
-            disabled={isSubmitting}
-            borderColor="#315C5C"
-            textColor={colors.light}
-            backgroundColor="#315C5C"
-          >
-            <span className="secondary-font">Subscribe</span>
-          </Button>
+          <div className="md:flex-shrink-0 md:w-40">
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              borderColor="#315C5C"
+              textColor={colors.light}
+              backgroundColor="#315C5C"
+            >
+              <span className="secondary-font">Subscribe</span>
+            </Button>
+          </div>
         </Form>
       )}
     </Formik>

@@ -60,7 +60,7 @@ const Layout: FC = ({ children }) => {
       {children}
 
       <footer>
-        <div className="sz-container px-6 pt-8 pb-10">
+        <div className="sz-container px-6 pt-8 md:pt-16 pb-10 md:pb-20">
           <div className="mb-8">
             <Link href="/">
               <a>

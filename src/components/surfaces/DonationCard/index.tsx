@@ -5,8 +5,8 @@ import DonationForm from '../../forms/DonationForm'
 import { DonationFormData, FormProps } from 'src/interfaces/forms'
 
 const DonationCard: FC<FormProps<DonationFormData>> = ({ handleSubmit }) => (
-  <Wrapper className="rounded-xl">
-    <div className="bg-wrapper rounded-t-lg rounded-b-none flex items-center justify-center h-52 bg-center bg-no-repeat bg-cover">
+  <Wrapper className="rounded-xl md:max-w-2xl md:mx-auto md:flex md:flex-wrap">
+    <div className="bg-wrapper rounded-t-lg rounded-b-none md:rounded-r-none md:rounded-l-lg flex items-center justify-center h-52 bg-center bg-no-repeat bg-cover md:w-1/2 md:h-auto">
       <div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +66,7 @@ const DonationCard: FC<FormProps<DonationFormData>> = ({ handleSubmit }) => (
       </div>
     </div>
 
-    <div className="px-4 py-6">
+    <div className="px-4 md:px-8 py-6 md:pt-16 md:pb-8 md:w-1/2">
       <div className="mb-8">
         <DonationForm handleSubmit={handleSubmit} />
       </div>

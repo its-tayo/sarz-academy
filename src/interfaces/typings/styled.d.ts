@@ -12,5 +12,8 @@ declare module 'styled-components' {
       primary: string
       success: string
     }
+    breakpoints: {
+      md: string
+    }
   }
 }
