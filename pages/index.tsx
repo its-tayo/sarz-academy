@@ -32,7 +32,7 @@ const handleNewsletterSubmission = async ({ email }: NewsletterFormData) => {
 const Home: FC = () => {
   return (
     <Layout>
-      <section className="hero-wrapper hero-wrapper-1 pt-32 bg-repeat bg-center">
+      <section className="hero-wrapper hero-wrapper-1 pt-32 md:pt-0 bg-repeat bg-center">
         <div className="sz-container px-6 relative z-10">
           <div className="pt-10 pb-8">
             <h1 className="secondary-font text-4xl sm:w-72 sm:mx-auto sm:text-center">

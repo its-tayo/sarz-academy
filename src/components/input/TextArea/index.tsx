@@ -2,9 +2,9 @@ import React, { FC } from 'react'
 import { Field, ErrorMessage } from 'formik'
 
 import { Wrapper } from './styles'
-import { TextFieldProps } from 'src/interfaces/input'
+import { FieldProps } from 'src/interfaces/input'
 
-const TextArea: FC<TextFieldProps> = ({ label = '', name = '', ...props }) => (
+const TextArea: FC<FieldProps> = ({ label = '', name = '', ...props }) => (
   <Wrapper>
     {!!label && (
       <label className="block mb-2.5" htmlFor={name}>

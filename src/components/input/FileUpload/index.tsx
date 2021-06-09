@@ -2,13 +2,13 @@ import React, { FC, useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 
 import { Wrapper } from './styles'
-import { Field, ErrorMessage } from 'formik'
+import { ErrorMessage } from 'formik'
 import { FieldProps } from 'src/interfaces/input'
 
 const FileUpload: FC<FieldProps> = ({
   name = '',
   label = 'Drop file here',
-  ...props
+  // ...props
 }) => {
   const onDrop = useCallback((acceptedFiles) => {
     console.log(acceptedFiles)
