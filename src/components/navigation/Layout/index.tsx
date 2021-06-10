@@ -9,12 +9,12 @@ const Layout: FC = ({ children }) => {
       <header>
         <div className="sz-container relative z-10">
           <div className="absolute left-0 py-6 w-full flex flex-wrap items-center h-32">
-            <div className="px-6 w-1/2 h-full">
+            <div className="px-6 w-1/3 h-full">
               <Link href="/">
-                <a>
+                <a className="block w-20">
                   <svg
                     viewBox="0 0 400 400"
-                    className="w-auto h-full"
+                    className="w-full h-full"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -38,8 +38,21 @@ const Layout: FC = ({ children }) => {
               </Link>
             </div>
 
-            <div className="px-6 w-1/2 text-right">
-              <button type="button">
+            <div className="px-6 w-2/3 text-right">
+              <ul className="flex flex-wrap justify-end -mx-2">
+                <li className="px-2">
+                  <Link href="/about-us">
+                    <a>About Us</a>
+                  </Link>
+                </li>
+
+                <li className="px-2">
+                  <Link href="/sessions">
+                    <a>Sessions</a>
+                  </Link>
+                </li>
+              </ul>
+              {/* <button type="button">
                 <svg
                   fill="none"
                   strokeWidth="2"
@@ -51,7 +64,7 @@ const Layout: FC = ({ children }) => {
                 >
                   <path d="M3 12h18M3 6h18M3 18h18" />
                 </svg>
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -63,9 +76,9 @@ const Layout: FC = ({ children }) => {
         <div className="sz-container px-6 pt-8 md:pt-16 pb-10 md:pb-20">
           <div className="mb-8">
             <Link href="/">
-              <a>
+              <a className="block w-40 mx-auto">
                 <svg
-                  className="w-40 mx-auto"
+                  className="w-full"
                   viewBox="0 0 703.28 112.25"
                   xmlns="http://www.w3.org/2000/svg"
                 >

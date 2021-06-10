@@ -18,7 +18,9 @@ const TestimonialCard: FC<TestimonialCardProps> = ({
       />
     </div>
 
-    <h3 className="secondary-font text-3xl mb-12">{content}</h3>
+    <h3 className="secondary-font text-3xl mb-12 lg:max-w-lg lg:mx-auto">
+      {content}
+    </h3>
 
     <h5 className="text-2xl">{name}</h5>
     <p className="text-xs">{designation}</p>

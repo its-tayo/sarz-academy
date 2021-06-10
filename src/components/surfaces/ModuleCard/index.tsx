@@ -32,7 +32,7 @@ const ModuleCard: FC<ModuleCardProps> = ({
       <p className="text-sm">{content}</p>
 
       {!!onClick && (
-        <div className="mt-4 mb-2 w-56 mx-auto">
+        <div className="mt-4 md:mt-6 mb-2 w-56 md:w-40 mx-auto md:ml-0">
           <Button
             onClick={onClick}
             borderColor="#315C5C"

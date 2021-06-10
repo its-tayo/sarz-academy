@@ -274,7 +274,7 @@ const Home: FC = () => {
             The Sarz Academy
           </h2>
 
-          <div className="hero-wrapper hero-wrapper-2 mt-28 -mx-6 px-6 md:max-w-2xl lg:max-w-4xl md:mx-auto md:border md:rounded-md md:border-gray-800">
+          <div className="hero-wrapper hero-wrapper-2 mt-28 -mx-6 px-6 md:max-w-2xl lg:max-w-3xl md:mx-auto md:border md:rounded-md md:border-gray-800">
             <div className="relative z-10 transform -translate-y-16 md:-translate-y-10">
               <Slider settings={testimonialSlideSettings}>
                 <div className="px-2">

@@ -157,6 +157,29 @@ body {
       background-image: url('/images/patter-1.jpeg');
     }
   }
+
+  .md-hero-wrapper {
+    ${tw`relative`}
+    background-image: url('/images/patter-1.jpeg');
+
+    &::before {
+      content: '';
+      ${tw`absolute right-0 left-0 top-0 bottom-0`}
+      background-color: ${({ theme }) =>
+        transparentize(0.3, theme.colors.primary)};
+    }
+
+    &::after {
+      content: '';
+      ${tw`absolute right-0 left-0 top-0 bottom-0`}
+      ${({ theme }) =>
+        linearGradient({
+          colorStops: [theme.colors.primary, 'transparent'],
+          toDirection: 'to top',
+          fallback: 'transparent',
+        })}
+    }
+  }
 }
 /* Media query end */
 `

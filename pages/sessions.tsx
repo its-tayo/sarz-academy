@@ -24,66 +24,42 @@ const handleEventRegistration = async (payload: RegistrationFormData) => {
 
 const Sessions: FC = () => (
   <Layout>
-    <section className="hero-wrapper hero-wrapper-1 pt-32 bg-repeat bg-center">
+    <section className="primary-bg pt-32 bg-repeat bg-center">
       <div className="sz-container px-6 relative z-10">
         <div className="pt-10 pb-8">
-          <h1 className="secondary-font text-4xl sm:w-72 sm:mx-auto sm:text-center">
-            An Incubator For African Creatives
-          </h1>
+          <div className="md:flex md:flex-wrap md:items-center md:-mx-2.5">
+            <div className="md:w-1/2 lg:w-2/5 md:px-2.5">
+              <h1 className="secondary-font text-4xl sm:w-72 sm:mx-auto md:ml-0 sm:text-center md:text-left">
+                An Incubator For African Creatives
+              </h1>
 
-          <p className="mt-7 mb-10 sm:w-72 sm:mx-auto sm:text-center">
-            Break into the music industry through practical and hands-on
-            sessions led by industry experts.
-          </p>
+              <p className="mt-7 mb-10 md:mb-0 sm:w-72 md:ml-0 sm:mx-auto sm:text-center md:text-left">
+                Break into the music industry through practical and hands-on
+                sessions led by industry experts.
+              </p>
+            </div>
 
-          <div className="-mx-6 mb-4">
-            <Slider>
-              <div className="mr-4">
-                <img
-                  src="/images/dummy/img1.jpg"
-                  alt="dummy"
-                  className="w-auto h-52 object-cover"
-                />
-              </div>
-
-              <div className="mr-4">
-                <img
-                  src="/images/dummy/img2.jpg"
-                  alt="dummy"
-                  className="w-auto h-52 object-cover"
-                />
-              </div>
-
-              <div className="mr-4">
-                <img
-                  src="/images/dummy/img3.jpg"
-                  alt="dummy"
-                  className="w-auto h-52 object-cover"
-                />
-              </div>
-
-              <div className="mr-4">
-                <img
-                  src="/images/dummy/img4.jpg"
-                  alt="dummy"
-                  className="w-auto h-52 object-cover"
-                />
-              </div>
-            </Slider>
+            <div className="-mx-6 md:mx-0 mb-4 md:mb-0 md:w-1/2 lg:w-3/5 md:px-2.5">
+              <img
+                alt="dummy"
+                src="/images/dummy/img8.jpg"
+                className="w-full h-auto object-cover"
+              />
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <div>
-      <section className="hero-wrapper hero-wrapper-1 pt-32 bg-repeat bg-center">
+      <section className="hero-wrapper hero-wrapper-2 pt-32 bg-repeat bg-center">
         <div className="sz-container px-6 relative z-10">
           <div className="pt-10 pb-8">
-            <h1 className="secondary-font text-4xl">
+            <h1 className="secondary-font text-4xl lg:max-w-sm">
               Creative Approaches to music production
             </h1>
 
-            <div className="mt-8">
+            <div className="mt-8 md:mt-12">
               <Calendar />
             </div>
           </div>
@@ -91,12 +67,12 @@ const Sessions: FC = () => (
       </section>
 
       <section className="light-bg">
-        <div className="sz-container px-6 py-8">
+        <div className="sz-container px-6 py-8 md:py-16">
           <h2 className="secondary-font text-4xl color-primary">
             Register to Attend
           </h2>
 
-          <p className="mt-7 mb-10 color-primary">
+          <p className="mt-7 mb-10 color-primary md:max-w-sm">
             Please tell a bit about you so that we can personalise your
             onboarding experience.
           </p>
@@ -109,8 +85,8 @@ const Sessions: FC = () => (
     <div>
       <section className="hero-wrapper hero-wrapper-complete pt-32 bg-repeat bg-center">
         <div className="sz-container px-6 relative z-10">
-          <div className="pt-10 pb-60">
-            <h1 className="secondary-font text-4xl text-center">
+          <div className="pt-10 md:pt-60 pb-60 md:pb-20">
+            <h1 className="secondary-font text-4xl text-center md:text-left md:max-w-sm">
               Creative Approaches to music production
             </h1>
           </div>
@@ -118,25 +94,27 @@ const Sessions: FC = () => (
       </section>
 
       <section className="primary-bg">
-        <div className="sz-container px-6 py-8">
-          <h2 className="secondary-font text-center text-4xl">Instructors</h2>
+        <div className="sz-container px-6 py-8 md:py-16">
+          <h2 className="secondary-font text-center md:text-left text-4xl">
+            Instructors
+          </h2>
 
-          <div className="mt-12 mb-20 text-center">
-            <div className="mb-10">
+          <div className="mt-12 mb-20 text-center md:text-left md:flex md:flex-wrap md:-mx-4">
+            <div className="mb-10 md:mb-0 md:px-4">
               <div className="w-36 h-40 mx-auto mb-4">
                 <Image src="/images/dummy/img1.jpg" />
               </div>
               <p>Tiwa Savage</p>
             </div>
 
-            <div className="mb-10">
+            <div className="mb-10 md:mb-0 md:px-4">
               <div className="w-36 h-40 mx-auto mb-4">
                 <Image src="/images/dummy/img6.jpg" />
               </div>
               <p>Ayo Balogun </p>
             </div>
 
-            <div>
+            <div className="md:px-4">
               <div className="w-36 h-40 mx-auto mb-4">
                 <Image src="/images/dummy/img7.jpg" />
               </div>
@@ -159,7 +137,7 @@ const Sessions: FC = () => (
 
           <div className="my-11 -mx-6">
             <Slider>
-              <div className="mr-4">
+              <div className="ml-6">
                 <img
                   src="/images/dummy/img1.jpg"
                   alt="dummy"
@@ -167,7 +145,7 @@ const Sessions: FC = () => (
                 />
               </div>
 
-              <div className="mr-4">
+              <div className="ml-6">
                 <img
                   src="/images/dummy/img2.jpg"
                   alt="dummy"
@@ -175,7 +153,7 @@ const Sessions: FC = () => (
                 />
               </div>
 
-              <div className="mr-4">
+              <div className="ml-6">
                 <img
                   src="/images/dummy/img3.jpg"
                   alt="dummy"
@@ -183,7 +161,7 @@ const Sessions: FC = () => (
                 />
               </div>
 
-              <div className="mr-4">
+              <div className="ml-6">
                 <img
                   src="/images/dummy/img4.jpg"
                   alt="dummy"
@@ -203,7 +181,7 @@ const Sessions: FC = () => (
             learnt, to produce beautiful melodies.
           </p>
 
-          <div className="my-11 h-44 sm:h-64 border border-gray-500 rounded-md">
+          <div className="my-11 h-44 sm:h-64 md:h-80 lg:h-96 border border-gray-500 rounded-md md:max-w-xl lg:max-w-2xl md:mx-auto">
             <iframe
               width="100%"
               height="100%"
@@ -226,7 +204,7 @@ const Sessions: FC = () => (
     </div>
 
     <section className="primary-bg">
-      <div className="sz-container px-6 py-8">
+      <div className="sz-container px-6 py-8 md:py-16">
         <div className="mb-6">
           <ul className="flex items-center justify-end -mx-2">
             <li className="px-2">
@@ -255,8 +233,8 @@ const Sessions: FC = () => (
           </ul>
         </div>
 
-        <div>
-          <div className="mb-8">
+        <div className="md:flex md:flex-wrap md:-mx-1.5 lg:-mx-2.5">
+          <div className="mb-8 md:w-1/3 md:px-1.5 lg:px-2.5">
             <ModuleCard
               onClick={dummyClickHandler}
               bgImageSrc="/images/event-5.jpg"
@@ -265,7 +243,7 @@ const Sessions: FC = () => (
             />
           </div>
 
-          <div className="mb-8">
+          <div className="mb-8 md:w-1/3 md:px-1.5 lg:px-2.5">
             <ModuleCard
               onClick={dummyClickHandler}
               bgImageSrc="/images/event-2.jpg"
@@ -274,7 +252,7 @@ const Sessions: FC = () => (
             />
           </div>
 
-          <div className="mb-8">
+          <div className="mb-8 md:w-1/3 md:px-1.5 lg:px-2.5">
             <ModuleCard
               onClick={dummyClickHandler}
               bgImageSrc="/images/event-4.jpg"

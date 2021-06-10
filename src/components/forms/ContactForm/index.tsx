@@ -33,29 +33,33 @@ const ContactForm: FC<FormProps<ContactFormData>> = ({ handleSubmit }) => {
       validationSchema={validationSchema}
     >
       {({ isSubmitting }) => (
-        <Wrapper className="px-6 py-10">
+        <Wrapper className="px-6 md:px-10 py-10 md:py-12 md:max-w-lg md:mx-auto md:rounded-xl">
           <Form>
-            <div className="mb-4">
-              <TextField name="name" placeholder="Name" />
+            <div className="md:flex md:flex-wrap md:-xm-2.5 md:mb-6">
+              <div className="mb-5 md:mb-0 md:w-1/2 md:px-2.5">
+                <TextField label="Name" name="name" />
+              </div>
+
+              <div className="mb-5 md:mb-0 md:w-1/2 md:px-2.5">
+                <TextField label="Email" name="email" />
+              </div>
             </div>
 
-            <div className="mb-4">
-              <TextField name="email" placeholder="Email" />
+            <div className="mb-8">
+              <TextArea label="Message" name="message" />
             </div>
 
-            <div className="mb-6">
-              <TextArea name="message" placeholder="Message" />
+            <div className="md:w-60 md:mx-auto">
+              <Button
+                type="submit"
+                borderColor="#315C5C"
+                disabled={isSubmitting}
+                textColor={colors.light}
+                backgroundColor="#315C5C"
+              >
+                <span className="secondary-font">Submit</span>
+              </Button>
             </div>
-
-            <Button
-              type="submit"
-              borderColor="#315C5C"
-              disabled={isSubmitting}
-              textColor={colors.light}
-              backgroundColor="#315C5C"
-            >
-              <span className="secondary-font">Submit</span>
-            </Button>
           </Form>
         </Wrapper>
       )}

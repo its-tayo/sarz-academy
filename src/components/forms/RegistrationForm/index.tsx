@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { Formik, FormikHelpers, Form } from 'formik'
 import { object, string, mixed } from 'yup'
 
+import { Wrapper } from './styles'
 import Button from '../../input/Button'
 import { theme } from 'src/styles/theme'
 import TextField from '../../input/TextField'
@@ -47,37 +48,45 @@ const RegistrationForm: FC<FormProps<RegistrationFormData>> = ({
       validationSchema={validationSchema}
     >
       {({ isSubmitting }) => (
-        <Form>
-          <div className="mb-4">
-            <TextField name="firstName" placeholder="First Name" />
-          </div>
+        <Wrapper>
+          <Form>
+            <div className="md:flex md:flex-wrap md:-xm-2.5 md:mb-6">
+              <div className="mb-5 md:mb-0 md:w-1/2 md:px-2.5">
+                <TextField name="firstName" label="First Name" />
+              </div>
 
-          <div className="mb-4">
-            <TextField name="lastName" placeholder="Last Name" />
-          </div>
+              <div className="mb-5 md:mb-0 md:w-1/2 md:px-2.5">
+                <TextField name="lastName" label="Last Name" />
+              </div>
+            </div>
 
-          <div className="mb-4">
-            <TextField name="email" placeholder="Email" />
-          </div>
+            <div className="md:flex md:flex-wrap md:-xm-2.5 md:mb-10">
+              <div className="mb-5 md:mb-0 md:w-1/2 md:px-2.5">
+                <TextField name="email" label="Email" />
+              </div>
 
-          <div className="mb-4">
-            <TextField name="phoneNumber" placeholder="Phone Number" />
-          </div>
+              <div className="mb-10 md:mb-0 md:w-1/2 md:px-2.5">
+                <TextField name="phoneNumber" label="Phone Number" />
+              </div>
+            </div>
 
-          <div className="mb-16">
-            <FileUpload name="file" label="Upload your work" />
-          </div>
+            <div className="mb-16">
+              <FileUpload name="file" label="Upload your work" />
+            </div>
 
-          <Button
-            type="submit"
-            disabled={isSubmitting}
-            textColor={colors.light}
-            borderColor={colors.alt2}
-            backgroundColor={colors.alt2}
-          >
-            <span className="secondary-font">Register</span>
-          </Button>
-        </Form>
+            <div className="md:w-60">
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                textColor={colors.light}
+                borderColor={colors.alt2}
+                backgroundColor={colors.alt2}
+              >
+                <span className="secondary-font">Register</span>
+              </Button>
+            </div>
+          </Form>
+        </Wrapper>
       )}
     </Formik>
   )
