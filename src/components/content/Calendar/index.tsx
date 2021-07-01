@@ -76,7 +76,7 @@ const Calendar: FC = () => (
       </ul>
     </div>
 
-    <div className="rounded-b-xl py-8 md:pt-40 md:pb-16 md:flex-1 md:px-16">
+    <div className="rounded-b-xl py-8 md:pt-40 md:pb-16 md:flex-1 md:px-16 lg:px-10">
       <h3 className="secondary-font text-3xl md:text-5xl mb-5">
         Creativity and Song Writing
       </h3>
@@ -91,25 +91,25 @@ const Calendar: FC = () => (
 
         <div className="mt-12 mb-20 text-left flex flex-wrap md:-mx-2 lg:-mx-4">
           <div className="md:px-2 lg:px-4">
-            <div className="md:w-32 lg:w-36 md:h-36 lg:h-40 mx-auto mb-4">
+            <div className="md:w-32 md:h-36 mx-auto mb-4">
               <Image src="/images/dummy/img1.jpg" />
             </div>
             <p>Tiwa Savage</p>
           </div>
 
           <div className="md:px-2 lg:px-4">
-            <div className="md:w-32 lg:w-36 md:h-36 lg:h-40 mx-auto mb-4">
+            <div className="md:w-32 md:h-36 mx-auto mb-4">
               <Image src="/images/dummy/img6.jpg" />
             </div>
             <p>Ayo Balogun </p>
           </div>
 
-          <div className="md:px-2 lg:px-4">
-            <div className="md:w-32 lg:w-36 md:h-36 lg:h-40 mx-auto mb-4">
+          {/* <div className="md:px-2 lg:px-4">
+            <div className="md:w-32 md:h-36 mx-auto mb-4">
               <Image src="/images/dummy/img7.jpg" />
             </div>
             <p>Sarz Osabuohien</p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

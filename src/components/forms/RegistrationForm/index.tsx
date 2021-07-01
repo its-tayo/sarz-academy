@@ -48,7 +48,7 @@ const RegistrationForm: FC<FormProps<RegistrationFormData>> = ({
       validationSchema={validationSchema}
     >
       {({ isSubmitting }) => (
-        <Wrapper>
+        <Wrapper className="md:max-w-lg">
           <Form>
             <div className="md:flex md:flex-wrap md:-xm-2.5 md:mb-6">
               <div className="mb-5 md:mb-0 md:w-1/2 md:px-2.5">

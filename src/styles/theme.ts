@@ -13,5 +13,6 @@ export const theme: DefaultTheme = {
   },
   breakpoints: {
     md: '768px',
+    xl: '1280px',
   },
 }

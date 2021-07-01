@@ -1,289 +1,293 @@
 import React, { FC } from 'react'
+import { RichText } from 'prismic-reactjs'
 
+import { prismicClient } from 'src/setup'
+import { AboutUsProps } from 'src/interfaces/pages'
 import { ContactFormData } from 'src/interfaces/forms'
+import { LayoutProps } from 'src/interfaces/navigation'
 import { Layout, Slider, Image, ContactForm } from 'src/components'
+
+type Props = {
+  config: LayoutProps
+  content: AboutUsProps
+}
 
 const handleContactForm = async ({ name, email, message }: ContactFormData) => {
   console.log('contact form submitted: ', { name, email, message })
 }
 
-const AboutUs: FC = () => (
-  <Layout>
-    <section className="hero-wrapper hero-wrapper-1 pt-32 md:pb-10 bg-repeat bg-center">
-      <div className="sz-container px-6 relative z-10">
-        <div className="pt-10 pb-8">
-          <h1 className="secondary-font text-4xl text-center sm:w-72 sm:mx-auto">
-            About The Sarz Academy
-          </h1>
+const AboutUs: FC<Props> = ({ config, content }) => {
+  const {
+    title,
+    youtube_video_id,
+    description,
+    mission,
+    vision,
+    carousel,
+    section_1_title,
+    section_1_description,
+    section_2_title,
+    section_2_description,
+    section_2_btn_label,
+    trustees,
+  } = content
 
-          <div className="mt-8 md:mt-16 mb-14 w-full h-44 sm:h-64 md:h-80 lg:h-96 border border-gray-500 rounded-md md:max-w-xl lg:max-w-2xl md:mx-auto">
-            <iframe
-              width="100%"
-              height="100%"
-              frameBorder="0"
-              allowFullScreen
-              className="rounded-md"
-              title="About the Sarz academy"
-              src="https://www.youtube.com/embed/TCH_LF9t99Y"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            ></iframe>
+  const trustee1 = trustees.value?.[0].image.value?.main.url || ''
+  const trustee2 = trustees.value?.[1].image.value?.main.url || ''
+  const trustee3 = trustees.value?.[2].image.value?.main.url || ''
+
+  return (
+    <Layout config={config}>
+      <section className="hero-wrapper hero-wrapper-1 pt-32 md:pb-10 bg-repeat bg-center">
+        <div className="sz-container px-6 relative z-10">
+          <div className="pt-10 pb-8">
+            {!!title.value && (
+              <h1 className="secondary-font text-4xl text-center sm:w-72 sm:mx-auto">
+                {title.value}
+              </h1>
+            )}
+
+            <div className="mt-8 md:mt-16 mb-14 w-full h-44 sm:h-64 md:h-80 lg:h-96 border border-gray-500 rounded-md md:max-w-xl lg:max-w-2xl md:mx-auto">
+              {!!youtube_video_id.value && (
+                <iframe
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  allowFullScreen
+                  className="rounded-md"
+                  src={`https://www.youtube.com/embed/${youtube_video_id.value}`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                ></iframe>
+              )}
+            </div>
+
+            {!!description.value && (
+              <p className="text-center md:hidden">{description.value}</p>
+            )}
           </div>
-
-          <p className="text-center md:hidden">
-            The Sarz Academy (TSA) is a non-governmental and non-profit
-            organization, set up by Osabuohien Osaretin (aka Sarz). We train
-            creatives, help them improve their skills, and give them the
-            business expertise required to succeed.
-          </p>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section className="primary-bg md:hidden">
-      <div className="sz-container px-6 py-8">
-        <h2 className="secondary-font text-center text-4xl">Mission</h2>
+      <section className="primary-bg md:hidden">
+        <div className="sz-container px-6 py-8">
+          <h2 className="secondary-font text-center text-4xl">Mission</h2>
 
-        <p className="mt-7 text-center">
-          TSA is non-profit academy set up to educate Nigerian creatives on how
-          to harness their talent and turn their passions into businesses.
-        </p>
-      </div>
-    </section>
+          {!!mission.value && (
+            <p className="mt-7 text-center">{mission.value}</p>
+          )}
+        </div>
+      </section>
 
-    <section className="primary-bg md-hero-wrapper">
-      <div className="sz-container px-6 py-8 md:pt-16 md:pb-0 md:relative md:z-10">
-        <p className="text-center hidden md:block md:max-w-lg md:mx-auto md:mt-4 md:mb-20">
-          The Sarz Academy (TSA) is a non-governmental and non-profit
-          organization, set up by Osabuohien Osaretin (aka Sarz). We train
-          creatives, help them improve their skills, and give them the business
-          expertise required to succeed.
-        </p>
-
-        <div className="md:flex md:flex-wrap md:-mx-2.5 md:mb-28">
-          <div className="hidden md:block md:w-1/2 md:px-2.5">
-            <h2 className="secondary-font text-center text-4xl">Mission</h2>
-
-            <p className="mt-7 text-center md:max-w-sm md:mx-auto">
-              TSA is non-profit academy set up to educate Nigerian creatives on
-              how to harness their talent and turn their passions into
-              businesses.
+      <section className="primary-bg md-hero-wrapper">
+        <div className="sz-container px-6 py-8 md:pt-16 md:pb-0 md:relative md:z-10">
+          {!!description.value && (
+            <p className="text-center hidden md:block md:max-w-lg md:mx-auto md:mt-4 md:mb-20">
+              {description.value}
             </p>
+          )}
+
+          <div className="md:flex md:flex-wrap md:-mx-2.5 md:mb-28">
+            <div className="hidden md:block md:w-1/2 md:px-2.5">
+              <h2 className="secondary-font text-center text-4xl">Mission</h2>
+
+              {!!mission.value && (
+                <p className="mt-7 text-center md:max-w-sm md:mx-auto">
+                  {mission.value}
+                </p>
+              )}
+            </div>
+
+            <div className="md:w-1/2 md:px-2.5">
+              <h2 className="secondary-font text-center text-4xl">Vision</h2>
+
+              {!!vision.value && (
+                <p className="mt-7 mb-16 md:mb-0 text-center md:max-w-sm md:mx-auto">
+                  {vision.value}
+                </p>
+              )}
+            </div>
           </div>
 
-          <div className="md:w-1/2 md:px-2.5">
-            <h2 className="secondary-font text-center text-4xl">Vision</h2>
-
-            <p className="mt-7 mb-16 md:mb-0 text-center md:max-w-sm md:mx-auto">
-              TSA is non-profit academy set up to educate Nigerian creatives on
-              how to harness their talent and turn their passions into
-              businesses.
-            </p>
+          <div className="primary-bg -mx-6 mb-4 md:mb-0 md:pt-4 md:pb-16">
+            {!!carousel.value?.length && (
+              <Slider>
+                {carousel.value.map(({ image }, i) => (
+                  <div key={i} className="mr-4">
+                    <img
+                      src={image.value?.image.url}
+                      alt={image.value?.image.name}
+                      className="w-auto h-52 object-cover"
+                    />
+                  </div>
+                ))}
+              </Slider>
+            )}
           </div>
         </div>
+      </section>
 
-        <div className="primary-bg -mx-6 mb-4 md:mb-0 md:pt-4 md:pb-16">
-          <Slider>
-            <div className="mr-4">
-              <img
-                src="/images/dummy/img1.jpg"
-                alt="dummy"
-                className="w-auto h-52 object-cover"
-              />
+      <section className="alt1-bg">
+        <div className="sz-container px-6 py-8 md:py-24">
+          <div className="md:flex md:flex-wrap md:items-center md:-mx-2.5">
+            <div className="md:w-1/2 md:px-2.5 md:order-1">
+              {!!section_1_title.value && (
+                <h2 className="secondary-font text-center md:text-left text-4xl md:max-w-sm md:ml-auto">
+                  {section_1_title.value}
+                </h2>
+              )}
+
+              {!!section_1_description.value && (
+                <p className="mt-7 mb-10 md:mb-0 text-center md:text-left md:max-w-sm md:ml-auto">
+                  {section_1_description.value}
+                </p>
+              )}
             </div>
 
-            <div className="mr-4">
-              <img
-                src="/images/dummy/img2.jpg"
-                alt="dummy"
-                className="w-auto h-52 object-cover"
-              />
-            </div>
+            <div className="mb-6 md:mb-0 md:w-1/2 md:px-2.5 md:order-0">
+              <div className="w-36 h-40 mx-auto">
+                <Image src={trustee1} />
+              </div>
 
-            <div className="mr-4">
-              <img
-                src="/images/dummy/img3.jpg"
-                alt="dummy"
-                className="w-auto h-52 object-cover"
-              />
-            </div>
+              <div className="relative -mt-12 flex flex-wrap justify-center">
+                <div className="w-36 h-40 flex-shrink-0 mr-2">
+                  <Image src={trustee2} />
+                </div>
 
-            <div className="mr-4">
-              <img
-                src="/images/dummy/img4.jpg"
-                alt="dummy"
-                className="w-auto h-52 object-cover"
-              />
+                <div className="w-36 h-40 flex-shrink-0">
+                  <Image src={trustee3} />
+                </div>
+              </div>
             </div>
-          </Slider>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section className="alt1-bg">
-      <div className="sz-container px-6 py-8 md:py-24">
-        <div className="md:flex md:flex-wrap md:items-center md:-mx-2.5">
-          <div className="md:w-1/2 md:px-2.5 md:order-1">
-            <h2 className="secondary-font text-center md:text-left text-4xl md:max-w-sm md:ml-auto">
-              Board of Trustees
+      {trustees.value?.map(({ description1, background_color, name }, i) => {
+        return (
+          <section key={i} style={{ backgroundColor: background_color.value }}>
+            <div className="sz-container px-6 py-8 md:py-24">
+              <div className="md:flex md:flex-wrap md:items-center md:-mx-2.5">
+                <div className="md:w-1/2 md:px-2.5 md:order-1">
+                  {!!name.value && (
+                    <h2 className="secondary-font text-4xl md:max-w-sm md:ml-auto">
+                      {name.value}
+                    </h2>
+                  )}
+
+                  {description1.value && (
+                    <div className="mt-7 mb-10 md:mb-0 md:max-w-sm md:ml-auto">
+                      <RichText render={description1.value as any} />
+                    </div>
+                  )}
+                </div>
+
+                <div className="mb-6 md:mb-0 md:w-1/2 md:px-2.5 md:order-0">
+                  <div
+                    className={`w-36 h-40 mx-auto ${
+                      i !== 0 ? 'opacity-30' : 'relative z-10'
+                    }`}
+                  >
+                    <Image src={trustee1} />
+                  </div>
+
+                  <div className="relative -mt-12 flex flex-wrap justify-center">
+                    <div
+                      className={`w-36 h-40 flex-shrink-0 mr-2 ${
+                        i !== 1 ? 'opacity-30' : ''
+                      }`}
+                    >
+                      <Image src={trustee2} />
+                    </div>
+
+                    <div
+                      className={`w-36 h-40 flex-shrink-0 ${
+                        i !== 2 ? 'opacity-30' : ''
+                      }`}
+                    >
+                      <Image src={trustee3} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )
+      })}
+
+      <section className="primary-bg">
+        <div className="sz-container px-6 py-8 md:py-24">
+          {!!section_2_title.value && (
+            <h2 className="secondary-font text-center text-4xl">
+              {section_2_title.value}
             </h2>
+          )}
 
-            <p className="mt-7 mb-10 md:mb-0 text-center md:text-left md:max-w-sm md:ml-auto">
-              The Sarz Academy board members, are driven by a vision to grow the
-              Nigerian entertainment industry by training young talent to
-              fulfill their best potential.
+          {!!section_2_description.value && (
+            <p className="mt-7 mb-10 md:mb-16 text-center md:max-w-sm md:mx-auto">
+              {section_2_description.value}
             </p>
-          </div>
+          )}
 
-          <div className="mb-6 md:mb-0 md:w-1/2 md:px-2.5 md:order-0">
-            <div className="w-36 h-40 mx-auto">
-              <Image src="/images/dummy/img5.jpg" />
-            </div>
-
-            <div className="relative -mt-12 flex flex-wrap justify-center">
-              <div className="w-36 h-40 flex-shrink-0 mr-2">
-                <Image src="/images/dummy/img6.jpg" />
-              </div>
-
-              <div className="w-36 h-40 flex-shrink-0">
-                <Image src="/images/dummy/img7.jpg" />
-              </div>
-            </div>
+          <div className="-mx-6 md:mx-0">
+            <ContactForm
+              handleSubmit={handleContactForm}
+              btnLabel={section_2_btn_label.value}
+            />
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </Layout>
+  )
+}
 
-    <section className="primary-bg">
-      <div className="sz-container px-6 py-8 md:py-24">
-        <div className="md:flex md:flex-wrap md:items-center md:-mx-2.5">
-          <div className="md:w-1/2 md:px-2.5 md:order-1">
-            <h2 className="secondary-font text-4xl md:max-w-sm md:ml-auto">
-              Osahun Osabuohien
-            </h2>
+export async function getStaticProps(): Promise<any> {
+  try {
+    const configPromise = prismicClient.getByUID('config', 'config')
+    const contentPromise = prismicClient.getByUID('about', 'about')
 
-            <p className="mt-7 mb-10 md:mb-0 md:max-w-sm md:ml-auto">
-              Osabuohien Osaretin better known by his stage name Sarz, is an
-              award winning Nigerian record producer and musician. <br /> <br />
-              Sarz has worked with a wide range of people across the music
-              industry, and played a crucial role in afrobeats’ global
-              recognition; Having produced celebrated cross-cultural projects
-              such as Drake’s “One Dance,” Wizkid and Skepta on “Energy (Stay
-              Far Away)”, etc.
-            </p>
-          </div>
+    const [configRes, contentRes] = await Promise.all([
+      configPromise,
+      contentPromise,
+    ])
 
-          <div className="mb-6 md:mb-0 md:w-1/2 md:px-2.5 md:order-0">
-            <div className="w-36 h-40 mx-auto relative z-10">
-              <Image src="/images/dummy/img5.jpg" />
-            </div>
+    const {
+      data: { config },
+    } = configRes
+    const {
+      data: { about: content },
+    } = contentRes
 
-            <div className="relative -mt-12 flex flex-wrap justify-center">
-              <div className="w-36 h-40 flex-shrink-0 mr-2 opacity-30">
-                <Image src="/images/dummy/img6.jpg" />
-              </div>
-
-              <div className="w-36 h-40 flex-shrink-0 opacity-30">
-                <Image src="/images/dummy/img7.jpg" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section className="brown-bg">
-      <div className="sz-container px-6 py-8 md:py-24">
-        <div className="md:flex md:flex-wrap md:items-center md:-mx-2.5">
-          <div className="md:w-1/2 md:px-2.5 md:order-1">
-            <h2 className="secondary-font text-4xl md:max-w-sm md:ml-auto">
-              Opeyemi Iredumare
-            </h2>
-
-            <p className="mt-7 mb-10 md:mb-0 md:max-w-sm md:ml-auto">
-              Iredumare Opeyemi is a legal practitioner in Nigeria with years of
-              experience in intellectual property, Internet/ Telecommunication
-              Law and Policy. <br /> <br />
-              Ire has experience in facilitating multimillion dollars deals for
-              his clients in content licensing, music and film acquisition,
-              intellectual property valuation, digital content distribution
-              companies, digital music service providers, film makers, film
-              producers, music publishers, record labels, aggregators and
-              artistes in the creative industries in Africa and Middle East.
-            </p>
-          </div>
-
-          <div className="mb-4 md:mb-0 md:w-1/2 md:px-2.5 md:order-0">
-            <div className="w-36 h-40 mx-auto opacity-30">
-              <Image src="/images/dummy/img5.jpg" />
-            </div>
-
-            <div className="relative -mt-12 flex flex-wrap justify-center">
-              <div className="w-36 h-40 flex-shrink-0 mr-2 opacity-30">
-                <Image src="/images/dummy/img6.jpg" />
-              </div>
-
-              <div className="w-36 h-40 flex-shrink-0">
-                <Image src="/images/dummy/img7.jpg" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section className="blackberry-bg">
-      <div className="sz-container px-6 py-8 md:py-24">
-        <div className="md:flex md:flex-wrap md:items-center md:-mx-2.5">
-          <div className="md:w-1/2 md:px-2.5 md:order-1">
-            <h2 className="secondary-font text-4xl md:max-w-sm md:ml-auto">
-              Osahun Osabuohien
-            </h2>
-
-            <p className="mt-7 mb-10 md:mb-0 md:max-w-sm md:ml-auto">
-              Osabuohien Osaretin better known by his stage name Sarz, is an
-              award winning Nigerian record producer and musician. <br /> <br />
-              Sarz has worked with a wide range of people across the music
-              industry, and played a crucial role in afrobeats’ global
-              recognition; Having produced celebrated cross-cultural projects
-              such as Drake’s “One Dance,” Wizkid and Skepta on “Energy (Stay
-              Far Away)”, etc.
-            </p>
-          </div>
-
-          <div className="mb-4 md:mb-0 md:w-1/2 md:px-2.5 md:order-0">
-            <div className="w-36 h-40 mx-auto opacity-30">
-              <Image src="/images/dummy/img5.jpg" />
-            </div>
-
-            <div className="relative -mt-12 flex flex-wrap justify-center">
-              <div className="w-36 h-40 flex-shrink-0 mr-2">
-                <Image src="/images/dummy/img6.jpg" />
-              </div>
-
-              <div className="w-36 h-40 flex-shrink-0 opacity-30">
-                <Image src="/images/dummy/img7.jpg" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section className="primary-bg">
-      <div className="sz-container px-6 py-8 md:py-24">
-        <h2 className="secondary-font text-center text-4xl">Get in Touch</h2>
-
-        <p className="mt-7 mb-10 md:mb-16 text-center md:max-w-sm md:mx-auto">
-          Let us know your questions, suggestions and concerns by filling out
-          the contact below.
-        </p>
-
-        <div className="-mx-6 md:mx-0">
-          <ContactForm handleSubmit={handleContactForm} />
-        </div>
-      </div>
-    </section>
-  </Layout>
-)
+    return {
+      props: { config, content },
+    }
+  } catch (err) {
+    return {
+      props: {
+        config: {
+          menu_items: {},
+          footer_text: {},
+          facebook_url: {},
+          instagram_url: {},
+          twitter_url: {},
+          copyright: {},
+        },
+        content: {
+          title: {},
+          youtube_video_id: {},
+          description: {},
+          mission: {},
+          vision: {},
+          carousel: {},
+          section_1_title: {},
+          section_1_description: {},
+          section_2_title: {},
+          section_2_description: {},
+          section_2_btn_label: {},
+          trustees: {},
+        },
+      },
+    }
+  }
+}
 
 export default AboutUs

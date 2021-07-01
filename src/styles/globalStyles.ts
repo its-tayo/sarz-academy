@@ -59,16 +59,8 @@ body {
   background-color: ${({ theme }) => theme.colors.alt1};
 }
 
-.brown-bg {
-  background-color: #1E171A;
-}
-
-.blackberry-bg {
-  background-color: #210315;
-}
-
 .sz-container {
-  ${tw`max-w-full sm:max-w-lg md:max-w-5xl mx-auto`}
+  ${tw`max-w-full sm:max-w-lg md:max-w-7xl mx-auto`}
 }
 
 .hero-wrapper {
@@ -98,6 +90,10 @@ body {
 }
 
 .hero-wrapper-2 {
+  background-image: url('/images/patter-1.jpeg');
+}
+
+.hero-wrapper-3 {
   background-image: url('/images/patter-1.jpeg');
 }
 
@@ -143,6 +139,10 @@ body {
       color: ${({ theme }) => theme.colors.light};
     }
   }
+
+  &.sessions-slider .w-screen {
+    width: 100vw !important;
+  }
 }
 /* Slick Slider end */
 
@@ -178,6 +178,19 @@ body {
           toDirection: 'to top',
           fallback: 'transparent',
         })}
+    }
+  }
+}
+
+@media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
+  .hero-wrapper-3 {
+    &::before {
+      ${tw`w-1/2 ml-auto`}
+      background-color: ${({ theme }) => theme.colors.light};
+    }
+
+    &::after {
+      ${tw`bg-none`}
     }
   }
 }

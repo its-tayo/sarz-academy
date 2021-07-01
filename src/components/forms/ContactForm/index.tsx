@@ -7,7 +7,11 @@ import Button from '../../input/Button'
 import { theme } from 'src/styles/theme'
 import TextArea from '../../input/TextArea'
 import TextField from '../../input/TextField'
-import { ContactFormData, FormProps } from 'src/interfaces/forms'
+import {
+  ContactFormData,
+  ContactFormProps,
+  FormProps,
+} from 'src/interfaces/forms'
 
 const { colors } = theme
 const initialValues = { name: '', email: '', message: '' }
@@ -17,7 +21,10 @@ const validationSchema = object().shape({
   email: string().email().required(),
 })
 
-const ContactForm: FC<FormProps<ContactFormData>> = ({ handleSubmit }) => {
+const ContactForm: FC<ContactFormProps & FormProps<ContactFormData>> = ({
+  handleSubmit,
+  btnLabel = 'Submit',
+}) => {
   const onSubmit = async (
     values: ContactFormData,
     actions: FormikHelpers<ContactFormData>
@@ -57,7 +64,7 @@ const ContactForm: FC<FormProps<ContactFormData>> = ({ handleSubmit }) => {
                 textColor={colors.light}
                 backgroundColor="#315C5C"
               >
-                <span className="secondary-font">Submit</span>
+                <span className="secondary-font">{btnLabel}</span>
               </Button>
             </div>
           </Form>

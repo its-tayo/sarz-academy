@@ -1,9 +1,19 @@
 import React, { FC } from 'react'
 import Link from 'next/link'
 
+import { LayoutProps } from 'src/interfaces/navigation'
 import { Wrapper } from './styles'
 
-const Layout: FC = ({ children }) => {
+const Layout: FC<{ config: LayoutProps }> = ({ children, config }) => {
+  const {
+    copyright,
+    menu_items,
+    twitter_url,
+    footer_text,
+    facebook_url,
+    instagram_url,
+  } = config
+
   return (
     <Wrapper>
       <header>
@@ -40,17 +50,13 @@ const Layout: FC = ({ children }) => {
 
             <div className="px-6 w-2/3 text-right">
               <ul className="flex flex-wrap justify-end -mx-2">
-                <li className="px-2">
-                  <Link href="/about-us">
-                    <a>About Us</a>
-                  </Link>
-                </li>
-
-                <li className="px-2">
-                  <Link href="/sessions">
-                    <a>Sessions</a>
-                  </Link>
-                </li>
+                {menu_items.value?.map(({ title, link }, i) => (
+                  <li key={i} className="px-2">
+                    <Link href={link?.value || ''}>
+                      <a>{title?.value}</a>
+                    </Link>
+                  </li>
+                ))}
               </ul>
               {/* <button type="button">
                 <svg
@@ -95,66 +101,80 @@ const Layout: FC = ({ children }) => {
             </Link>
           </div>
 
-          <p className="text-sm text-center">
-            Follow the latest news about TSA on social media
-          </p>
+          {!!footer_text.value && (
+            <p className="text-sm text-center">{footer_text.value}</p>
+          )}
 
           <ul className="my-5 flex items-center justify-center">
-            <li>
-              <a
-                href="#"
-                className="media-link h-9 w-9 rounded-full flex items-center justify-center"
-              >
-                <svg
-                  stroke="none"
-                  viewBox="0 0 24 24"
-                  className="h-5 w-5 fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
+            {!!facebook_url.value && (
+              <li>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={facebook_url.value.url}
+                  className="media-link h-9 w-9 rounded-full flex items-center justify-center"
                 >
-                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
-                </svg>
-              </a>
-            </li>
+                  <svg
+                    stroke="none"
+                    viewBox="0 0 24 24"
+                    className="h-5 w-5 fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                  </svg>
+                </a>
+              </li>
+            )}
 
-            <li className="mx-5">
-              <a
-                href="#"
-                className="media-link h-9 w-9 rounded-full flex items-center justify-center"
-              >
-                <svg
-                  fill="none"
-                  strokeWidth="3"
-                  viewBox="0 0 24 24"
-                  strokeLinejoin="round"
-                  className="h-5 w-5 stroke-current"
-                  xmlns="http://www.w3.org/2000/svg"
+            {!!instagram_url.value && (
+              <li className="mx-5">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={instagram_url.value.url}
+                  className="media-link h-9 w-9 rounded-full flex items-center justify-center"
                 >
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01" />
-                </svg>
-              </a>
-            </li>
+                  <svg
+                    fill="none"
+                    strokeWidth="3"
+                    viewBox="0 0 24 24"
+                    strokeLinejoin="round"
+                    className="h-5 w-5 stroke-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01" />
+                  </svg>
+                </a>
+              </li>
+            )}
 
-            <li>
-              <a
-                href="#"
-                className="media-link h-9 w-9 rounded-full flex items-center justify-center"
-              >
-                <svg
-                  stroke="none"
-                  viewBox="0 0 24 24"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-5 w-5 fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
+            {!!twitter_url.value && (
+              <li>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={twitter_url.value.url}
+                  className="media-link h-9 w-9 rounded-full flex items-center justify-center"
                 >
-                  <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
-                </svg>
-              </a>
-            </li>
+                  <svg
+                    stroke="none"
+                    viewBox="0 0 24 24"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-5 w-5 fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                  </svg>
+                </a>
+              </li>
+            )}
           </ul>
 
-          <p className="text-sm text-center">&copy;2021 All rights reserved</p>
+          {!!copyright.value && (
+            <p className="text-sm text-center">{copyright.value}</p>
+          )}
         </div>
       </footer>
     </Wrapper>

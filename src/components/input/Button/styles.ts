@@ -9,10 +9,10 @@ export const ButtonWrapper = styled.button<{
   borderColor: string
   backgroundColor: string
 }>`
-  ${tw`border w-full border-solid`};
   color: ${({ textColor }) => textColor};
   border-color: ${({ borderColor }) => borderColor};
   background-color: ${({ backgroundColor }) => backgroundColor};
+  ${tw`border w-full border-solid focus:outline-none focus:border-gray-400`};
 
   ${({ size }) => size === 'small' && tw`rounded-full text-sm px-2 py-1`}
   ${({ size }) => size === 'medium' && tw`rounded-full text-lg p-2`}

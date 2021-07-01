@@ -1,3 +1,5 @@
+import { ImageProps } from './content'
+
 export type ModuleCardProps = {
   title: string
   content: string
@@ -13,3 +15,5 @@ export type TestimonialCardProps = {
   imageSrc: string
   designation: string
 }
+
+export type SessionCardProps = ImageProps
