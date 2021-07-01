@@ -27,7 +27,7 @@ const sliderSettings = {
   // draggable: false,
   variableWidth: true,
   adaptiveHeight: true,
-  initialSlide: 1,
+  // initialSlide: 1,
   className: 'slider sessions-slider',
 }
 
