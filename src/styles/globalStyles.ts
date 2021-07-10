@@ -59,6 +59,10 @@ body {
   background-color: ${({ theme }) => theme.colors.alt1};
 }
 
+.border-brown {
+  border-color: #2A2622;
+}
+
 .sz-container {
   ${tw`max-w-full sm:max-w-lg md:max-w-7xl mx-auto`}
 }
