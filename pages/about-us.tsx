@@ -23,10 +23,10 @@ const AboutUs: FC<Props> = ({ config, content }) => {
     mission = '',
     vision = '',
     gallery_images = '',
-    spotlight_title = '',
-    spotlight_image = '',
-    spotlight_description = '',
-    trustees = [],
+    // spotlight_title = '',
+    // spotlight_image = '',
+    // spotlight_description = '',
+    // trustees = [],
   } = content as AboutUsProps
 
   const carousel = gallery_images.split(',')
