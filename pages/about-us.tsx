@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
-import { RichText } from 'prismic-reactjs'
+import axios from 'axios'
 
-import { prismicClient } from 'src/setup'
 import { AboutUsProps } from 'src/interfaces/pages'
 import { ContactFormData } from 'src/interfaces/forms'
 import { LayoutProps } from 'src/interfaces/navigation'
@@ -18,51 +17,47 @@ const handleContactForm = async ({ name, email, message }: ContactFormData) => {
 
 const AboutUs: FC<Props> = ({ config, content }) => {
   const {
-    title,
-    youtube_video_id,
-    description,
-    mission,
-    vision,
-    carousel,
-    section_1_title,
-    section_1_description,
-    section_2_title,
-    section_2_description,
-    section_2_btn_label,
-    trustees,
-  } = content
+    title = '',
+    description = '',
+    youtube_id = '',
+    mission = '',
+    vision = '',
+    gallery_images = '',
+    spotlight_title = '',
+    spotlight_image = '',
+    spotlight_description = '',
+    trustees = [],
+  } = content as AboutUsProps
 
-  const trustee1 = trustees.value?.[0].image.value?.main.url || ''
-  const trustee2 = trustees.value?.[1].image.value?.main.url || ''
-  const trustee3 = trustees.value?.[2].image.value?.main.url || ''
+  const carousel = gallery_images.split(',')
 
   return (
     <Layout config={config}>
       <section className="hero-wrapper hero-wrapper-1 pt-32 md:pb-10 bg-repeat bg-center">
         <div className="sz-container px-6 relative z-10">
           <div className="pt-10 pb-8">
-            {!!title.value && (
+            {!!title && (
               <h1 className="secondary-font text-4xl text-center sm:w-72 sm:mx-auto">
-                {title.value}
+                {title}
               </h1>
             )}
 
-            <div className="mt-8 md:mt-16 mb-14 w-full h-44 sm:h-64 md:h-80 lg:h-96 border border-gray-500 rounded-md md:max-w-xl lg:max-w-2xl md:mx-auto">
-              {!!youtube_video_id.value && (
+            <div className="mt-8 md:mt-16 mb-14 md:mb-0 w-full h-44 sm:h-64 md:h-80 lg:h-96 border border-gray-500 rounded-md md:max-w-xl lg:max-w-2xl md:mx-auto">
+              {!!youtube_id && (
                 <iframe
                   width="100%"
                   height="100%"
                   frameBorder="0"
                   allowFullScreen
                   className="rounded-md"
-                  src={`https://www.youtube.com/embed/${youtube_video_id.value}`}
+                  src={`https://www.youtube.com/embed/${youtube_id}`}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 ></iframe>
               )}
             </div>
 
-            {!!description.value && (
-              <p className="text-center md:hidden">{description.value}</p>
+            {!!description && (
+              <p className="text-center md:hidden">{description}</p>
             )}
           </div>
         </div>
@@ -72,17 +67,15 @@ const AboutUs: FC<Props> = ({ config, content }) => {
         <div className="sz-container px-6 py-8">
           <h2 className="secondary-font text-center text-4xl">Mission</h2>
 
-          {!!mission.value && (
-            <p className="mt-7 text-center">{mission.value}</p>
-          )}
+          {!!mission && <p className="mt-7 text-center">{mission}</p>}
         </div>
       </section>
 
       <section className="primary-bg md-hero-wrapper">
-        <div className="sz-container px-6 py-8 md:pt-16 md:pb-0 md:relative md:z-10">
-          {!!description.value && (
-            <p className="text-center hidden md:block md:max-w-lg md:mx-auto md:mt-4 md:mb-20">
-              {description.value}
+        <div className="sz-container px-6 py-8 md:pt-10 md:pb-0 md:relative md:z-10">
+          {!!description && (
+            <p className="text-center hidden md:block md:max-w-lg md:mx-auto md:mb-20">
+              {description}
             </p>
           )}
 
@@ -90,9 +83,9 @@ const AboutUs: FC<Props> = ({ config, content }) => {
             <div className="hidden md:block md:w-1/2 md:px-2.5">
               <h2 className="secondary-font text-center text-4xl">Mission</h2>
 
-              {!!mission.value && (
+              {!!mission && (
                 <p className="mt-7 text-center md:max-w-sm md:mx-auto">
-                  {mission.value}
+                  {mission}
                 </p>
               )}
             </div>
@@ -100,24 +93,22 @@ const AboutUs: FC<Props> = ({ config, content }) => {
             <div className="md:w-1/2 md:px-2.5">
               <h2 className="secondary-font text-center text-4xl">Vision</h2>
 
-              {!!vision.value && (
+              {!!vision && (
                 <p className="mt-7 mb-16 md:mb-0 text-center md:max-w-sm md:mx-auto">
-                  {vision.value}
+                  {vision}
                 </p>
               )}
             </div>
           </div>
 
           <div className="primary-bg -mx-6 mb-4 md:mb-0 md:pt-4 md:pb-16">
-            {!!carousel.value?.length && (
+            {!!carousel?.length && (
               <Slider>
-                {carousel.value.map(({ image }, i) => (
+                {carousel.map((str, i) => (
                   <div key={i} className="mr-4">
-                    <img
-                      src={image.value?.image.url}
-                      alt={image.value?.image.name}
-                      className="w-auto h-52 object-cover"
-                    />
+                    <div className="w-40 h-52">
+                      <Image src={str.trim()} />
+                    </div>
                   </div>
                 ))}
               </Slider>
@@ -126,7 +117,7 @@ const AboutUs: FC<Props> = ({ config, content }) => {
         </div>
       </section>
 
-      <section className="alt1-bg">
+      {/*<section className="alt1-bg">
         <div className="sz-container px-6 py-8 md:py-24">
           <div className="md:flex md:flex-wrap md:items-center md:-mx-2.5">
             <div className="md:w-1/2 md:px-2.5 md:order-1">
@@ -212,27 +203,19 @@ const AboutUs: FC<Props> = ({ config, content }) => {
             </div>
           </section>
         )
-      })}
+      })}*/}
 
       <section className="primary-bg">
         <div className="sz-container px-6 py-8 md:py-24">
-          {!!section_2_title.value && (
-            <h2 className="secondary-font text-center text-4xl">
-              {section_2_title.value}
-            </h2>
-          )}
+          <h2 className="secondary-font text-center text-4xl">Get in Touch</h2>
 
-          {!!section_2_description.value && (
-            <p className="mt-7 mb-10 md:mb-16 text-center md:max-w-sm md:mx-auto">
-              {section_2_description.value}
-            </p>
-          )}
+          <p className="mt-7 mb-10 md:mb-16 text-center md:max-w-sm md:mx-auto">
+            Let us know your questions, suggestions and concerns by filling out
+            the contact below.
+          </p>
 
           <div className="-mx-6 md:mx-0">
-            <ContactForm
-              handleSubmit={handleContactForm}
-              btnLabel={section_2_btn_label.value}
-            />
+            <ContactForm handleSubmit={handleContactForm} btnLabel="Submit" />
           </div>
         </div>
       </section>
@@ -242,48 +225,58 @@ const AboutUs: FC<Props> = ({ config, content }) => {
 
 export async function getStaticProps(): Promise<any> {
   try {
-    const configPromise = prismicClient.getByUID('config', 'config')
-    const contentPromise = prismicClient.getByUID('about', 'about')
-
-    const [configRes, contentRes] = await Promise.all([
-      configPromise,
-      contentPromise,
-    ])
-
+    const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/about`)
+    const { menu = [], facebook = '', instagram = '', twitter = '' } = data
     const {
-      data: { config },
-    } = configRes
-    const {
-      data: { about: content },
-    } = contentRes
+      title = '',
+      description = '',
+      youtube_id = '',
+      mission = '',
+      vision = '',
+      gallery_images = '',
+      spotlight_title = '',
+      spotlight_image = '',
+      spotlight_description = '',
+      trustees = [],
+    } = data
 
     return {
-      props: { config, content },
+      props: {
+        config: { menu, facebook, instagram, twitter },
+        content: {
+          title,
+          description,
+          youtube_id,
+          mission,
+          vision,
+          gallery_images,
+          spotlight_title,
+          spotlight_image,
+          spotlight_description,
+          trustees,
+        },
+      },
     }
   } catch (err) {
     return {
       props: {
         config: {
-          menu_items: {},
-          footer_text: {},
-          facebook_url: {},
-          instagram_url: {},
-          twitter_url: {},
-          copyright: {},
+          menu: [],
+          facebook: '',
+          instagram: '',
+          twitter: '',
         },
         content: {
-          title: {},
-          youtube_video_id: {},
-          description: {},
-          mission: {},
-          vision: {},
-          carousel: {},
-          section_1_title: {},
-          section_1_description: {},
-          section_2_title: {},
-          section_2_description: {},
-          section_2_btn_label: {},
-          trustees: {},
+          title: '',
+          description: '',
+          youtube_id: '',
+          mission: '',
+          vision: '',
+          gallery_images: '',
+          spotlight_title: '',
+          spotlight_image: '',
+          spotlight_description: '',
+          trustees: [],
         },
       },
     }

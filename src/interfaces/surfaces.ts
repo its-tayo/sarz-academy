@@ -4,6 +4,7 @@ export type ModuleCardProps = {
   title: string
   content: string
   imageSrc?: string
+  btnLabel?: string
   bgImageSrc?: string
   onClick?: () => void
   backgroundColor?: string

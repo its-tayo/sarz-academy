@@ -5,6 +5,7 @@ export const theme: DefaultTheme = {
     dark: '#232323',
     alt1: '#0A2540',
     alt2: '#263263',
+    alt3: '#1f171b',
     grey: '#bfbfbf',
     light: '#FFFFFF',
     error: '#923623',

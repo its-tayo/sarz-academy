@@ -5,6 +5,7 @@ export { default as Layout } from './navigation/Layout'
 export { default as Button } from './input/Button'
 
 // content
+export { default as Pill } from './content/Pill'
 export { default as Image } from './content/Image'
 export { default as Slider } from './content/Slider'
 export { default as Calendar } from './content/Calendar'

@@ -31,10 +31,6 @@ body {
   color: ${({ theme }) => theme.colors.light};
 }
 
-.direction-rtl {
-  direction: rtl;
-}
-
 .primary-font {
   font-family: 'GraphikRegular', sans-serif;
 }
@@ -57,6 +53,10 @@ body {
 
 .alt1-bg {
   background-color: ${({ theme }) => theme.colors.alt1};
+}
+
+.alt3-bg {
+  background-color: ${({ theme }) => theme.colors.alt3};
 }
 
 .border-brown {
@@ -105,31 +105,12 @@ body {
   background-image: url('images/dummy/img5.jpg');
 }
 
-.marquee-wrapper {
-  .marquee-1 {
-    animation: marquee 15s linear infinite alternate;
-  }
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 
-  .marquee-2 {
-    animation: marquee2 15s linear infinite alternate;
-  }
-}
-
-@keyframes marquee {
-  0%, 100% {
-    transform: translateX(0%);
-  }
-  50% {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes marquee2 {
-  0%, 100% {
-    transform: translateX(0%);
-  }
-  50% {
-    transform: translateX(100%);
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 

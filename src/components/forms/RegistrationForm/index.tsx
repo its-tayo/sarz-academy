@@ -1,24 +1,23 @@
 import React, { FC } from 'react'
 import { Formik, FormikHelpers, Form } from 'formik'
-import { object, string, mixed } from 'yup'
+import { object, string } from 'yup'
 
 import { Wrapper } from './styles'
 import Button from '../../input/Button'
 import { theme } from 'src/styles/theme'
 import TextField from '../../input/TextField'
-import FileUpload from '../../input/FileUpload'
 import { RegistrationFormData, FormProps } from 'src/interfaces/forms'
 
 const { colors } = theme
 const initialValues = {
+  url: '',
   email: '',
-  file: null,
   lastName: '',
   firstName: '',
   phoneNumber: '',
 }
 const validationSchema = object().shape({
-  file: mixed().required(),
+  url: string().url().required(),
   lastName: string().required(),
   firstName: string().required(),
   email: string().email().required(),
@@ -71,7 +70,7 @@ const RegistrationForm: FC<FormProps<RegistrationFormData>> = ({
             </div>
 
             <div className="mb-16">
-              <FileUpload name="file" label="Upload your work" />
+              <TextField name="url" label="Public Portfolio URL" />
             </div>
 
             <div className="md:w-60">

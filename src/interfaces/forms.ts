@@ -25,7 +25,7 @@ export type ContactFormProps = {
 }
 
 export type RegistrationFormData = {
-  file: any
+  url: string
   email: string
   lastName: string
   firstName: string

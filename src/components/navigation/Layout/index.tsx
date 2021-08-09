@@ -1,31 +1,28 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import Link from 'next/link'
 
 import { LayoutProps } from 'src/interfaces/navigation'
 import { Wrapper } from './styles'
 
 const Layout: FC<{ config: LayoutProps }> = ({ children, config }) => {
-  const {
-    copyright,
-    menu_items,
-    twitter_url,
-    footer_text,
-    facebook_url,
-    instagram_url,
-  } = config
+  const [menuVisibility, setMenuVisibility] = useState(false)
+  const { menu = [], facebook = '', instagram = '', twitter = '' } = config
+
+  const mobileMenuClasses =
+    'mobile-menu fixed w-full h-full top-0 z-10 transition duration-300 ease-in transform md:hidden'
 
   return (
     <Wrapper>
       <header>
-        <div className="sz-container relative z-10">
+        <div className="sz-container relative z-30">
           <div className="absolute left-0 py-6 w-full flex flex-wrap items-center h-32">
-            <div className="px-6 w-1/3 h-full">
+            <div className="px-6 w-1/3 h-full md:flex">
               <Link href="/">
-                <a className="block w-20">
+                <a className="block w-20 md:w-40">
                   <svg
                     viewBox="0 0 400 400"
-                    className="w-full h-full"
                     xmlns="http://www.w3.org/2000/svg"
+                    className="w-full h-full md:hidden"
                   >
                     <path
                       fill="#fff"
@@ -44,33 +41,67 @@ const Layout: FC<{ config: LayoutProps }> = ({ children, config }) => {
                       />
                     </g>
                   </svg>
+
+                  <svg
+                    viewBox="0 0 703.28 112.25"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-full h-full hidden md:block"
+                  >
+                    <g>
+                      <g>
+                        <path
+                          fill="#fff"
+                          d="M14 17H0V1h44.6v16h-14v93.93H14zM48.72 1h16.69v44h11.37V1h16.69v109.92H76.78v-48.3H65.41v48.3H48.72zM137.62 1v16h-21.28v28.8H133v16.67h-16.66v31.76h22.16v16.69H99.66V1zM156.51 91.28v-22h16.54v19.2c0 5 1.63 7.68 5.47 7.68S184 93.5 184 86.7v-2.51c0-7.83-.73-10.64-6.79-18.46l-10.66-13.59c-7.09-9.14-9.16-16.25-9.16-27.14v-3.58C157.39 6.8 164.77 0 177.92 0H181c13.74 0 19.06 6.06 19.06 19.05v18H184V21.27c0-3.69-.73-6.5-4.72-6.5s-4.88 2.51-4.88 7.68v2.07c0 6.21 1.19 9.6 6.8 16.84l10.64 13.73c7.53 9.75 9.89 15.37 9.89 27.77v3.54c0 16.11-6.94 25.71-21.57 25.71h-3.24c-13.32 0-20.41-7.24-20.41-20.83zM232.11 90.24H220l-2.21 20.68h-14.92L216.31 1h19.79l14.33 109.88h-16.11zm-6.2-57l-4.28 40.62h8.71zM269.76 110.92h-16.68V1h27c11.07 0 16.69 4.72 16.69 17v19.5c0 9.15-4.28 12.7-7.24 14 3.69 1.62 7.24 4.58 7.24 12v38.55a17.27 17.27 0 001.62 8.13v.73h-16.51c-.75-1.18-1.63-3.1-1.63-9V68.83c0-4.88-.88-6.94-6.2-6.94h-4.29zm0-64.69h4.44c4.57 0 6.05-2.95 6.05-7.82V23.05c0-4.73-1-7.09-6.05-7.09h-4.44zM341.82 1v14.51l-24.07 79.31H343v16.1h-42.68V96l23.78-79.31h-22.3V1zM387.74 90.24h-12.11l-2.21 20.68H358.5L371.94 1h19.79l14.33 109.88H390zm-6.2-57l-4.28 40.62H386zM435.58 88.62V63.07H452v25.4c0 11.81-3.84 23.78-19.94 23.78h-3.7c-16.83 0-20.53-12.11-20.53-23.19V22c0-11.23 4.88-22 19.95-22h3.84C449.91 0 452 12.12 452 22.89v19.65h-16.4V23.19c0-4.73-1.48-7.23-5.61-7.23s-5.17 2.36-5.17 7.23v65.28c0 4.88 1.62 7.53 5.32 7.53 3.96 0 5.44-2.95 5.44-7.38zM483 90.24h-12.1l-2.22 20.68h-14.94L467.17 1H487l14.33 109.88h-16.1zm-6.2-57l-4.28 40.62h8.71zM503.94 1h25.54c14.33 0 18.76 8.12 18.76 21.12v66.9c0 13.45-5 21.86-18.76 21.86h-25.54zm16.68 94h4c5 0 6.49-2.66 6.49-8.57V24.52c0-6.35-1.63-8.56-5.76-8.56h-4.73zM592.1 1v16h-21.28v28.8h16.69v16.67h-16.69v31.76H593v16.69h-38.86V1zM597.26 1h21.41l8 58 8.12-58h19.94v109.92h-15.67v-71l-10 71h-6.64l-10.19-71v71h-14.97zM672 65.14L656.91 1h16.24l7.68 41 7.38-41h15.07l-14.63 64.29v45.63H672z"
+                        />
+                      </g>
+                    </g>
+                  </svg>
                 </a>
               </Link>
             </div>
 
             <div className="px-6 w-2/3 text-right">
-              <ul className="flex flex-wrap justify-end -mx-2">
-                {menu_items.value?.map(({ title, link }, i) => (
-                  <li key={i} className="px-2">
-                    <Link href={link?.value || ''}>
-                      <a>{title?.value}</a>
+              <ul className="hidden md:flex md:flex-wrap md:justify-end md:-mx-2">
+                {menu.map(({ id, url, title }) => (
+                  <li key={id} className="px-2">
+                    <Link href={url}>
+                      <a>{title}</a>
                     </Link>
                   </li>
                 ))}
               </ul>
-              {/* <button type="button">
-                <svg
-                  fill="none"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="stroke-current w-6 h-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M3 12h18M3 6h18M3 18h18" />
-                </svg>
-              </button> */}
+
+              <button
+                type="button"
+                className="md:hidden"
+                onClick={() => setMenuVisibility((prevVal) => !prevVal)}
+              >
+                {menuVisibility ? (
+                  <svg
+                    fill="none"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="stroke-current w-6 h-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M18 6L6 18M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg
+                    fill="none"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="stroke-current w-6 h-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M3 12h18M3 6h18M3 18h18" />
+                  </svg>
+                )}
+              </button>
             </div>
           </div>
         </div>
@@ -101,17 +132,17 @@ const Layout: FC<{ config: LayoutProps }> = ({ children, config }) => {
             </Link>
           </div>
 
-          {!!footer_text.value && (
-            <p className="text-sm text-center">{footer_text.value}</p>
-          )}
+          <p className="text-sm text-center">
+            Follow the latest news about TSA on social media
+          </p>
 
           <ul className="my-5 flex items-center justify-center">
-            {!!facebook_url.value && (
+            {!!facebook && (
               <li>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href={facebook_url.value.url}
+                  href={facebook}
                   className="media-link h-9 w-9 rounded-full flex items-center justify-center"
                 >
                   <svg
@@ -126,12 +157,12 @@ const Layout: FC<{ config: LayoutProps }> = ({ children, config }) => {
               </li>
             )}
 
-            {!!instagram_url.value && (
+            {!!instagram && (
               <li className="mx-5">
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href={instagram_url.value.url}
+                  href={instagram}
                   className="media-link h-9 w-9 rounded-full flex items-center justify-center"
                 >
                   <svg
@@ -149,12 +180,12 @@ const Layout: FC<{ config: LayoutProps }> = ({ children, config }) => {
               </li>
             )}
 
-            {!!twitter_url.value && (
+            {!!twitter && (
               <li>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href={twitter_url.value.url}
+                  href={twitter}
                   className="media-link h-9 w-9 rounded-full flex items-center justify-center"
                 >
                   <svg
@@ -172,11 +203,29 @@ const Layout: FC<{ config: LayoutProps }> = ({ children, config }) => {
             )}
           </ul>
 
-          {!!copyright.value && (
-            <p className="text-sm text-center">{copyright.value}</p>
-          )}
+          <p className="text-sm text-center">©2021 All rights reserved</p>
         </div>
       </footer>
+
+      <div
+        className={
+          menuVisibility
+            ? mobileMenuClasses
+            : `-translate-y-full ${mobileMenuClasses}`
+        }
+      >
+        <div className="sz-container px-6 pt-40 text-center">
+          <ul>
+            {menu.map(({ id, url, title }) => (
+              <li key={id} className="px-2 mb-10">
+                <Link href={url}>
+                  <a className="text-2xl">{title}</a>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </Wrapper>
   )
 }

@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
+  .mobile-menu {
+    background-color: ${({ theme }) => theme.colors.primary};
+  }
+
   footer {
     background-color: ${({ theme }) => theme.colors.primary};
     .media-link {

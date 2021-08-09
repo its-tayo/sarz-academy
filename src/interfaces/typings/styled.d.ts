@@ -6,6 +6,7 @@ declare module 'styled-components' {
       dark: string
       alt1: string
       alt2: string
+      alt3: string
       grey: string
       light: string
       error: string

@@ -14,6 +14,7 @@ const ModuleCard: FC<ModuleCardProps> = ({
   bgImageSrc,
   onClick = null,
   backgroundColor,
+  btnLabel = 'Register',
 }) => (
   <Wrapper
     className="rounded-lg"
@@ -27,7 +28,10 @@ const ModuleCard: FC<ModuleCardProps> = ({
     </div>
 
     <div className="content-wrapper rounded-b-lg p-5">
-      <h3 className="secondary-font text-2xl mb-4">{title}</h3>
+      <h3
+        className="secondary-font text-2xl mb-4"
+        dangerouslySetInnerHTML={{ __html: title }}
+      />
 
       <p className="text-sm">{content}</p>
 
@@ -39,7 +43,7 @@ const ModuleCard: FC<ModuleCardProps> = ({
             textColor={colors.light}
             backgroundColor="#315C5C"
           >
-            <span className="secondary-font">Register</span>
+            <span className="secondary-font">{btnLabel}</span>
           </Button>
         </div>
       )}
