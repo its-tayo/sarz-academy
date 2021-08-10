@@ -10,6 +10,15 @@ type Props = {
   config: LayoutProps
   content: AboutUsProps
 }
+const trusteesBg = ['#0a2540', '#021017', '#1f171b', '#220415']
+const trusteesSlideSettings = {
+  fade: true,
+  autoplay: true,
+  cssEase: 'linear',
+  className: 'slider',
+  adaptiveHeight: true,
+  variableWidth: false,
+}
 
 const handleContactForm = async ({ name, email, message }: ContactFormData) => {
   console.log('contact form submitted: ', { name, email, message })
@@ -23,10 +32,10 @@ const AboutUs: FC<Props> = ({ config, content }) => {
     mission = '',
     vision = '',
     gallery_images = '',
-    // spotlight_title = '',
-    // spotlight_image = '',
-    // spotlight_description = '',
-    // trustees = [],
+    spotlight_title = '',
+    spotlight_image = '',
+    spotlight_description = '',
+    trustees = [],
   } = content as AboutUsProps
 
   const carousel = gallery_images.split(',')
@@ -37,7 +46,7 @@ const AboutUs: FC<Props> = ({ config, content }) => {
         <div className="sz-container px-6 relative z-10">
           <div className="pt-10 pb-8">
             {!!title && (
-              <h1 className="secondary-font text-4xl text-center sm:w-72 sm:mx-auto">
+              <h1 className="secondary-font text-4xl text-center sm:w-96 sm:mx-auto">
                 {title}
               </h1>
             )}
@@ -117,93 +126,71 @@ const AboutUs: FC<Props> = ({ config, content }) => {
         </div>
       </section>
 
-      {/*<section className="alt1-bg">
-        <div className="sz-container px-6 py-8 md:py-24">
+      {!!trustees.length && (
+        <Slider settings={trusteesSlideSettings}>
+          {trustees.map(({ id, name, summary, imageURL }, i) => {
+            return (
+              <div key={id}>
+                <section style={{ backgroundColor: trusteesBg[i] }}>
+                  <div className="sz-container px-6 py-8 md:py-24">
+                    <div className="md:flex md:flex-wrap md:items-center md:-mx-2.5">
+                      <div className="mb-10 md:mb-0 md:w-1/2 md:px-2.5">
+                        <img
+                          alt={name}
+                          src={imageURL}
+                          className="w-72 h-auto object-cover mx-auto"
+                        />
+                      </div>
+
+                      <div className="mb-6 md:mb-0 md:w-1/2 md:px-2.5 text-center md:text-left">
+                        {!!name && (
+                          <h2 className="secondary-font text-4xl md:max-w-sm md:mx-auto">
+                            {name}
+                          </h2>
+                        )}
+
+                        {summary && (
+                          <div className="mt-7 md:max-w-sm md:mx-auto">
+                            <p>{summary}</p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            )
+          })}
+        </Slider>
+      )}
+
+      <section className="hero-wrapper hero-wrapper-2">
+        <div className="sz-container px-6 py-8 md:py-24 relative z-10">
           <div className="md:flex md:flex-wrap md:items-center md:-mx-2.5">
-            <div className="md:w-1/2 md:px-2.5 md:order-1">
-              {!!section_1_title.value && (
-                <h2 className="secondary-font text-center md:text-left text-4xl md:max-w-sm md:ml-auto">
-                  {section_1_title.value}
+            <div className="mb-10 md:mb-0 md:w-1/2 md:px-2.5">
+              <img
+                alt={spotlight_title}
+                src={spotlight_image}
+                className="w-72 h-auto object-cover mx-auto rounded-md"
+              />
+            </div>
+
+            <div className="mb-6 md:mb-0 md:w-1/2 md:px-2.5 text-center md:text-left">
+              {!!spotlight_title && (
+                <h2 className="secondary-font text-4xl md:max-w-sm md:mx-auto">
+                  {spotlight_title}
                 </h2>
               )}
 
-              {!!section_1_description.value && (
-                <p className="mt-7 mb-10 md:mb-0 text-center md:text-left md:max-w-sm md:ml-auto">
-                  {section_1_description.value}
-                </p>
+              {spotlight_description && (
+                <div className="mt-7 md:max-w-sm md:mx-auto">
+                  <p>{spotlight_description}</p>
+                </div>
               )}
-            </div>
-
-            <div className="mb-6 md:mb-0 md:w-1/2 md:px-2.5 md:order-0">
-              <div className="w-36 h-40 mx-auto">
-                <Image src={trustee1} />
-              </div>
-
-              <div className="relative -mt-12 flex flex-wrap justify-center">
-                <div className="w-36 h-40 flex-shrink-0 mr-2">
-                  <Image src={trustee2} />
-                </div>
-
-                <div className="w-36 h-40 flex-shrink-0">
-                  <Image src={trustee3} />
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </section>
-
-      {trustees.value?.map(({ description1, background_color, name }, i) => {
-        return (
-          <section key={i} style={{ backgroundColor: background_color.value }}>
-            <div className="sz-container px-6 py-8 md:py-24">
-              <div className="md:flex md:flex-wrap md:items-center md:-mx-2.5">
-                <div className="md:w-1/2 md:px-2.5 md:order-1">
-                  {!!name.value && (
-                    <h2 className="secondary-font text-4xl md:max-w-sm md:ml-auto">
-                      {name.value}
-                    </h2>
-                  )}
-
-                  {description1.value && (
-                    <div className="mt-7 mb-10 md:mb-0 md:max-w-sm md:ml-auto">
-                      <RichText render={description1.value as any} />
-                    </div>
-                  )}
-                </div>
-
-                <div className="mb-6 md:mb-0 md:w-1/2 md:px-2.5 md:order-0">
-                  <div
-                    className={`w-36 h-40 mx-auto ${
-                      i !== 0 ? 'opacity-30' : 'relative z-10'
-                    }`}
-                  >
-                    <Image src={trustee1} />
-                  </div>
-
-                  <div className="relative -mt-12 flex flex-wrap justify-center">
-                    <div
-                      className={`w-36 h-40 flex-shrink-0 mr-2 ${
-                        i !== 1 ? 'opacity-30' : ''
-                      }`}
-                    >
-                      <Image src={trustee2} />
-                    </div>
-
-                    <div
-                      className={`w-36 h-40 flex-shrink-0 ${
-                        i !== 2 ? 'opacity-30' : ''
-                      }`}
-                    >
-                      <Image src={trustee3} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        )
-      })}*/}
 
       <section className="primary-bg">
         <div className="sz-container px-6 py-8 md:py-24">
