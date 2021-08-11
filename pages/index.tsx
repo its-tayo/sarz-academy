@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
+import jsonp from 'jsonp'
 
 import {
   Layout,
@@ -31,11 +32,48 @@ const testimonialSlideSettings = {
 }
 
 const handleDonation = async ({ amount }: DonationFormData) => {
-  console.log('donation form submitted: ', amount)
+  if (typeof window === 'undefined') {
+    return
+  }
+
+  const handler = (window as any).PaystackPop.setup({
+    key: process.env.NEXT_PUBLIC_PAYSTACK_KEY,
+    email: 'donations@thesarzacademy.com',
+    amount: +amount * 100,
+    // label: 'Optional string that replaces customer email',
+    onClose: function () {
+      alert('Window closed.')
+    },
+    callback: function ({ reference }: any) {
+      alert(`Payment complete! Reference: ${reference}`)
+    },
+  })
+
+  handler.openIframe()
 }
 
 const handleNewsletterSubmission = async ({ email }: NewsletterFormData) => {
-  console.log('newsletter form submitted: ', email)
+  const baseURL = process.env.NEXT_PUBLIC_MAILCHIMP_URL
+  const ID = process.env.NEXT_PUBLIC_MAILCHIMP_ID
+  const U = process.env.NEXT_PUBLIC_MAILCHIMP_U
+
+  const url = `${baseURL}?MERGE0=${email}&id=${ID}&u=${U}`
+
+  const errorMessageMaxLength = 58 + email.length
+
+  jsonp(
+    url,
+    {
+      param: 'c',
+    },
+    (err, { result, msg }) => {
+      if (err) {
+        alert(err)
+      } else {
+        alert(`${result}: ${msg.substr(0, errorMessageMaxLength)}`)
+      }
+    }
+  )
 }
 
 const Home: FC<Props> = ({ config, content = {} }) => {

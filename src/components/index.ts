@@ -6,6 +6,7 @@ export { default as Button } from './input/Button'
 
 // content
 export { default as Pill } from './content/Pill'
+export { default as Modal } from './content/Modal'
 export { default as Image } from './content/Image'
 export { default as Slider } from './content/Slider'
 export { default as Calendar } from './content/Calendar'
@@ -20,3 +21,5 @@ export { default as SessionCard } from './surfaces/SessionCard'
 export { default as NewsletterForm } from './forms/NewsletterForm'
 export { default as ContactForm } from './forms/ContactForm'
 export { default as RegistrationForm } from './forms/RegistrationForm'
+export { default as SponsorForm } from './forms/SponsorForm'
+export { default as VolunteerForm } from './forms/VolunteerForm'

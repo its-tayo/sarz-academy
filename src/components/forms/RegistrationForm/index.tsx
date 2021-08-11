@@ -70,7 +70,7 @@ const RegistrationForm: FC<FormProps<RegistrationFormData>> = ({
             </div>
 
             <div className="mb-16">
-              <TextField name="url" label="Public Portfolio URL" />
+              <TextField name="url" label="Public Portfolio Link" />
             </div>
 
             <div className="md:w-60">

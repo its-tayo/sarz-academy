@@ -31,3 +31,21 @@ export type RegistrationFormData = {
   firstName: string
   phoneNumber: string
 }
+
+export type SponsorFormData = {
+  name: string
+  email: string
+  company: string
+}
+
+export type SponsorFormProps = {
+  title: string
+  description: string
+}
+
+export type VolunteerFormData = {
+  name: string
+  email: string
+  message: string
+  department: string
+}

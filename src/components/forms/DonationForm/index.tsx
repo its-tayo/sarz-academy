@@ -20,6 +20,7 @@ const DonationForm: FC<FormProps<DonationFormData>> = ({ handleSubmit }) => {
   ) => {
     await handleSubmit(values)
     actions.setSubmitting(false)
+    actions.resetForm()
   }
 
   return (

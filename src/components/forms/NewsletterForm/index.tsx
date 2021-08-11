@@ -25,6 +25,7 @@ const NewsletterForm: FC<NewsletterFormProps & FormProps<NewsletterFormData>> =
     ) => {
       await handleSubmit(values)
       actions.setSubmitting(false)
+      actions.resetForm()
     }
 
     return (

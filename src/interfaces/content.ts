@@ -23,3 +23,12 @@ export type CalendarProps = {
     name: string
   }[]
 }
+
+export type ClientOnPortalProps = {
+  selector: string
+}
+
+export type ModalProps = {
+  isModalOpen: boolean
+  openModal: () => void
+}
