@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react'
 import axios from 'axios'
 
+import { SupportProps } from 'src/interfaces/pages'
 import { LayoutProps } from 'src/interfaces/navigation'
 import {
   SponsorFormData,
@@ -19,13 +20,51 @@ import {
 
 type Props = {
   config: LayoutProps
+  content: SupportProps
 }
 
 const pills = ['Donate', 'Volunteer', 'Sponsorship', 'Partnership']
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+]
 
-const Support: FC<Props> = ({ config }) => {
+const Support: FC<Props> = ({ config, content }) => {
   const [isModalOpen, openModal] = useState(false)
   const [currentPill, setCurrentPill] = useState(pills[0])
+
+  const {
+    title = '',
+    description = '',
+    // donate = {},
+    // volunteer = {},
+    // sponsorship = {},
+    // partnership = {},
+    records = [],
+    next_session_title = '',
+    next_session_date = '',
+    next_session_bg_image = '',
+  } = content as SupportProps
+
+  const dateObject = new Date(next_session_date)
+  const day = dateObject.getDate()
+  const month = months[dateObject.getMonth() + 1]
+  const year = dateObject.getFullYear()
+
+  const currentTitle = (content as any)[currentPill.toLowerCase()].title
+  const currentDescription = (content as any)[currentPill.toLowerCase()]
+    .description
+  const currentImage = (content as any)[currentPill.toLowerCase()].image_url
 
   const handleDonation = async ({ amount }: DonationFormData) => {
     if (typeof window === 'undefined') {
@@ -65,16 +104,17 @@ const Support: FC<Props> = ({ config }) => {
       <section className="hero-wrapper hero-wrapper-1 pt-32 md:pb-10 bg-repeat bg-center">
         <div className="sz-container px-6 relative z-10">
           <div className="pt-10 pb-8">
-            <h1 className="secondary-font text-4xl text-center sm:w-72 sm:mx-auto">
-              An Incubator For African Creatives
-            </h1>
+            {!!title && (
+              <h1 className="secondary-font text-4xl text-center sm:w-72 sm:mx-auto">
+                {title}
+              </h1>
+            )}
 
-            <p className="mt-8 mb-3 text-center md:w-full md:max-w-lg md:mx-auto">
-              The Sarz Academy (TSA) is a non-governmental and non-profit
-              organization, set up by Osabuohien Osaretin (aka Sarz). We train
-              creatives, help them improve their skills, and give them the
-              business expertise required to succeed.
-            </p>
+            {!!description && (
+              <p className="mt-8 mb-3 text-center md:w-full md:max-w-lg md:mx-auto">
+                {description}
+              </p>
+            )}
           </div>
         </div>
       </section>
@@ -99,24 +139,27 @@ const Support: FC<Props> = ({ config }) => {
         <div className="sz-container px-6 py-8 md:py-24">
           <div className="lg:flex lg:flex-wrap lg:-mx-2 lg:items-center">
             <div className="lg:px-2 lg:w-1/2">
-              <img
-                alt="dummy"
-                src="/images/dummy/img8.jpg"
-                className="rounded-md w-full max-w-sm lg:max-w-lg mx-auto"
-              />
+              {!!currentImage && (
+                <img
+                  alt={currentPill}
+                  src={currentImage}
+                  className="rounded-md w-full max-w-sm lg:max-w-lg mx-auto"
+                />
+              )}
             </div>
 
             <div className="lg:px-2 lg:w-1/2">
-              <h3 className="mt-10 lg:mt-0 mb-6 secondary-font text-2xl text-center lg:text-left">
-                An Incubator For African Creatives
-              </h3>
+              {!!currentTitle && (
+                <h3 className="mt-10 lg:mt-0 mb-6 secondary-font text-2xl text-center lg:text-left">
+                  {currentTitle}
+                </h3>
+              )}
 
-              <p className="text-center lg:text-left mb-6">
-                The Sarz Academy (TSA) is a non-governmental and non-profit
-                organization, set up by Osabuohien Osaretin (aka Sarz). We train
-                creatives, help them improve their skills, and give them the
-                business expertise required to succeed.
-              </p>
+              {!!currentDescription && (
+                <p className="text-center lg:text-left mb-6">
+                  {currentDescription}
+                </p>
+              )}
 
               {(currentPill === 'Sponsorship' ||
                 currentPill === 'Partnership') && (
@@ -340,49 +383,36 @@ const Support: FC<Props> = ({ config }) => {
       </section>
 
       <section className="alt3-bg">
-        <div className="sz-container px-6 py-8 md:py-24">
+        <div className="sz-container px-6 pt-8 md:pt-24 md:pb-16">
           <h2 className="secondary-font text-center text-3xl">
             Our Track Records
           </h2>
 
           <div className="mt-12 flex flex-wrap -mx-1.5">
-            <div className="px-1.5 w-1/2 md:w-1/3 text-center mb-8">
-              <h4 className="secondary-font text-2xl">19</h4>
-              <span className="opacity-60">Years</span>
-            </div>
-            <div className="px-1.5 w-1/2 md:w-1/3 text-center mb-8">
-              <h4 className="secondary-font text-2xl">$575M</h4>
-              <span className="opacity-60">Dollars</span>
-            </div>
-
-            <div className="px-1.5 w-1/2 md:w-1/3 text-center mb-8">
-              <h4 className="secondary-font text-2xl">1,288,689</h4>
-              <span className="opacity-60">Donors</span>
-            </div>
-            <div className="px-1.5 w-1/2 md:w-1/3 text-center mb-8">
-              <h4 className="secondary-font text-2xl">29,688</h4>
-              <span className="opacity-60">Projects</span>
-            </div>
-
-            <div className="px-1.5 w-1/2 md:w-1/3 text-center">
-              <h4 className="secondary-font text-2xl">175+</h4>
-              <span className="opacity-60">Countries</span>
-            </div>
-            <div className="px-1.5 w-1/2 md:w-1/3 text-center">
-              <h4 className="secondary-font text-2xl">333</h4>
-              <span className="opacity-60">Companies</span>
-            </div>
+            {records.map(({ label, value }, i) => (
+              <div key={i} className="px-1.5 w-1/2 md:w-1/3 text-center mb-8">
+                <h4 className="secondary-font text-2xl">{value}</h4>
+                <span className="opacity-60">{label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="hero-wrapper hero-wrapper-complete bg-repeat bg-center">
+      <section
+        className="hero-wrapper bg-repeat bg-center"
+        style={{ backgroundImage: `url(${next_session_bg_image})` }}
+      >
         <div className="sz-container px-6 py-8 md:py-24 relative z-10">
-          <h2 className="secondary-font text-center text-3xl">
-            Countdown To Next Session
-          </h2>
+          {!!next_session_title && (
+            <h2 className="secondary-font text-center text-3xl">
+              {next_session_title}
+            </h2>
+          )}
 
-          <h5 className="text-center text-lg mt-10 mb-14">21 JULY 2021</h5>
+          <h5 className="text-center text-lg mt-10 mb-14 uppercase">
+            {day} {month} {year}
+          </h5>
 
           <div className="flex flex-wrap text-5xl justify-center secondary-font text-center">
             <div>
@@ -432,11 +462,39 @@ const Support: FC<Props> = ({ config }) => {
 
 export async function getStaticProps(): Promise<any> {
   try {
-    const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/home`)
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/support`
+    )
     const { menu = [], facebook = '', instagram = '', twitter = '' } = data
+    const {
+      title = '',
+      description = '',
+      donate = {},
+      volunteer = {},
+      sponsorship = {},
+      partnership = {},
+      records = [],
+      next_session_title = '',
+      next_session_date = '',
+      next_session_bg_image = '',
+    } = data
 
     return {
-      props: { config: { menu, facebook, instagram, twitter } },
+      props: {
+        config: { menu, facebook, instagram, twitter },
+        content: {
+          title,
+          description,
+          donate,
+          volunteer,
+          sponsorship,
+          partnership,
+          records,
+          next_session_title,
+          next_session_date,
+          next_session_bg_image,
+        },
+      },
     }
   } catch (err) {
     return {
@@ -446,6 +504,34 @@ export async function getStaticProps(): Promise<any> {
           facebook: '',
           instagram: '',
           twitter: '',
+        },
+        content: {
+          title: '',
+          description: '',
+          donate: {
+            title: '',
+            description: '',
+            image_url: '',
+          },
+          volunteer: {
+            title: '',
+            description: '',
+            image_url: '',
+          },
+          sponsorship: {
+            title: '',
+            description: '',
+            image_url: '',
+          },
+          partnership: {
+            title: '',
+            description: '',
+            image_url: '',
+          },
+          records: [],
+          next_session_title: '',
+          next_session_date: '',
+          next_session_bg_image: '',
         },
       },
     }

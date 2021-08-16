@@ -92,3 +92,22 @@ export type SessionProps = {
     completed: boolean
   }[]
 }
+
+type SupportSectionType = {
+  title: string
+  description: string
+  image_url: string
+}
+
+export type SupportProps = {
+  title: string
+  description: string
+  donate: SupportSectionType
+  volunteer: SupportSectionType
+  sponsorship: SupportSectionType
+  partnership: SupportSectionType
+  records: { label: string; value: string }[]
+  next_session_title: string
+  next_session_date: string
+  next_session_bg_image: string
+}

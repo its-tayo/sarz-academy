@@ -101,10 +101,6 @@ body {
   background-image: url('/images/patter-1.jpeg');
 }
 
-.hero-wrapper-complete {
-  background-image: url('images/dummy/img5.jpg');
-}
-
 .hide-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;
