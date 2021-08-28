@@ -31,51 +31,15 @@ const InitialContent: FC<Pick<SessionProps, 'title' | 'itinerary'>> = ({
   const handleEventRegistration = async (payload: RegistrationFormData) => {
     try {
       const { url, email, lastName, firstName, phoneNumber } = payload
-      const baseURL = `https://api.airtable.com/v0/${process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID}/${process.env.NEXT_PUBLIC_AIRTABLE_CURRENT_TABLE}`
-
-      const { data } = await axios({
-        method: 'GET',
-        url: baseURL,
-        headers: {
-          'Content-type': 'application/json',
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`,
-        },
-        params: {
-          filterByFormula: `{Email}="${email}"`,
-        },
-      })
-
-      if (data.records && data.records.length) {
-        alert(
-          'Error: Application exists with this email address already exists'
-        )
-        return
-      }
-
       await axios({
-        url: baseURL,
         method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`,
-        },
-
-        data: {
-          fields: {
-            Email: email,
-            Session: title,
-            Approved: false,
-            'Last Name': lastName,
-            'Portfolio Link': url,
-            'First Name': firstName,
-            'Phone Number': phoneNumber,
-          },
-        },
+        url: `${process.env.NEXT_PUBLIC_SF_URL}/logApplication`,
+        data: { url, title, lastName, firstName, email, phoneNumber },
       })
 
       alert('Application sent!')
     } catch (err) {
-      alert(err.toString())
+      alert(err?.response?.data?.message.substr(7) || err.toString())
     }
   }
 

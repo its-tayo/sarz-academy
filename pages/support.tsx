@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import axios from 'axios'
 
 import { SupportProps } from 'src/interfaces/pages'
@@ -24,7 +24,7 @@ type Props = {
 }
 
 const pills = ['Donate', 'Volunteer', 'Sponsorship', 'Partnership']
-const months = [
+const monthsArr = [
   'January',
   'February',
   'March',
@@ -39,7 +39,65 @@ const months = [
   'December',
 ]
 
+const calculateCountdown = (endDate: string): any => {
+  const convertDateToString = (date?: string) =>
+    date ? String(new Date(date)) : String(new Date())
+
+  let diff =
+    (Date.parse(convertDateToString(endDate)) -
+      Date.parse(convertDateToString())) /
+    1000
+
+  // clear countdown when date is reached
+  if (diff <= 0) return false
+
+  const timeLeft = {
+    years: 0,
+    days: 0,
+    hours: 0,
+    min: 0,
+    sec: 0,
+    millisec: 0,
+  }
+
+  // calculate time difference between now and expected date
+  if (diff >= 365.25 * 86400) {
+    // 365.25 * 24 * 60 * 60
+    timeLeft.years = Math.floor(diff / (365.25 * 86400))
+    diff -= timeLeft.years * 365.25 * 86400
+  }
+  if (diff >= 86400) {
+    // 24 * 60 * 60
+    timeLeft.days = Math.floor(diff / 86400)
+    diff -= timeLeft.days * 86400
+  }
+  if (diff >= 3600) {
+    // 60 * 60
+    timeLeft.hours = Math.floor(diff / 3600)
+    diff -= timeLeft.hours * 3600
+  }
+  if (diff >= 60) {
+    timeLeft.min = Math.floor(diff / 60)
+    diff -= timeLeft.min * 60
+  }
+  timeLeft.sec = diff
+
+  return timeLeft
+}
+
+const addLeadingZeros = (value: number | string) => {
+  value = String(value)
+  while (value.length < 2) {
+    value = '0' + value
+  }
+  return value
+}
+
 const Support: FC<Props> = ({ config, content }) => {
+  const [days, setDays] = useState(0)
+  const [hours, setHours] = useState(0)
+  const [minutes, setMinutes] = useState(0)
+  const [seconds, setSeconds] = useState(0)
   const [isModalOpen, openModal] = useState(false)
   const [currentPill, setCurrentPill] = useState(pills[0])
 
@@ -58,8 +116,24 @@ const Support: FC<Props> = ({ config, content }) => {
 
   const dateObject = new Date(next_session_date)
   const day = dateObject.getDate()
-  const month = months[dateObject.getMonth() + 1]
+  const month = monthsArr[dateObject.getMonth() + 1]
   const year = dateObject.getFullYear()
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const timeLeft = calculateCountdown(next_session_date)
+
+      if (timeLeft) {
+        const { days: curDays, hours: curHours, min, sec } = timeLeft
+        setDays(curDays)
+        setHours(curHours)
+        setMinutes(min)
+        setSeconds(sec)
+      }
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [next_session_date])
 
   const currentTitle = (content as any)[currentPill.toLowerCase()].title
   const currentDescription = (content as any)[currentPill.toLowerCase()]
@@ -89,14 +163,49 @@ const Support: FC<Props> = ({ config, content }) => {
     handler.openIframe()
   }
 
-  const handleSupportSubmission = async (values: SponsorFormData) => {
-    console.log(values)
-    openModal(false)
+  const handleSupportSubmission = async ({
+    name,
+    email,
+    company,
+  }: SponsorFormData) => {
+    try {
+      await axios({
+        method: 'POST',
+        url: `${process.env.NEXT_PUBLIC_SF_URL}/sendEmail`,
+        data: { formType: `${currentPill} Form`, name, email, company },
+      })
+
+      openModal(false)
+      alert('Form submitted successfully')
+    } catch (err) {
+      alert(err?.response?.data?.message.substr(7) || err.toString())
+    }
   }
 
-  const handleVolunteerSubmission = async (values: VolunteerFormData) => {
-    console.log(values)
-    openModal(false)
+  const handleVolunteerSubmission = async ({
+    name,
+    email,
+    message,
+    department,
+  }: VolunteerFormData) => {
+    try {
+      await axios({
+        method: 'POST',
+        url: `${process.env.NEXT_PUBLIC_SF_URL}/sendEmail`,
+        data: {
+          name,
+          email,
+          message,
+          department,
+          formType: `${currentPill} Form`,
+        },
+      })
+
+      openModal(false)
+      alert('Form submitted successfully')
+    } catch (err) {
+      alert(err?.response?.data?.message.substr(7) || err.toString())
+    }
   }
 
   return (
@@ -416,22 +525,30 @@ const Support: FC<Props> = ({ config, content }) => {
 
           <div className="flex flex-wrap text-5xl justify-center secondary-font text-center">
             <div>
-              <h5 className="mb-4">03</h5>
-              <p className="opacity-60 text-base primary-font">Months</p>
+              <h5 className="mb-4">{addLeadingZeros(days)}</h5>
+              <p className="opacity-60 text-base primary-font">Days</p>
             </div>
 
             <div>
               <h5 className="mb-4">
                 <span className="inline-block mx-3">:</span>
-                08
+                {addLeadingZeros(hours)}
                 <span className="inline-block mx-3">:</span>
               </h5>
-              <p className="opacity-60 text-base primary-font">Weeks</p>
+              <p className="opacity-60 text-base primary-font">Hours</p>
             </div>
 
             <div>
-              <h5 className="mb-4">90</h5>
-              <p className="opacity-60 text-base primary-font">Days</p>
+              <h5 className="mb-4">
+                {addLeadingZeros(minutes)}
+                <span className="inline-block mx-3">:</span>
+              </h5>
+              <p className="opacity-60 text-base primary-font -ml-8">Minutes</p>
+            </div>
+
+            <div>
+              <h5 className="mb-4">{addLeadingZeros(seconds)}</h5>
+              <p className="opacity-60 text-base primary-font">Seconds</p>
             </div>
           </div>
         </div>

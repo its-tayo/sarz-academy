@@ -21,7 +21,17 @@ const trusteesSlideSettings = {
 }
 
 const handleContactForm = async ({ name, email, message }: ContactFormData) => {
-  console.log('contact form submitted: ', { name, email, message })
+  try {
+    await axios({
+      method: 'POST',
+      url: `${process.env.NEXT_PUBLIC_SF_URL}/sendEmail`,
+      data: { formType: 'Contact Form', name, email, message },
+    })
+
+    alert('Form submitted successfully')
+  } catch (err) {
+    alert(err?.response?.data?.message.substr(7) || err.toString())
+  }
 }
 
 const AboutUs: FC<Props> = ({ config, content }) => {
