@@ -10,15 +10,15 @@ type Props = {
   config: LayoutProps
   content: AboutUsProps
 }
-const trusteesBg = ['#0a2540', '#021017', '#1f171b', '#220415']
-const trusteesSlideSettings = {
-  fade: true,
-  autoplay: true,
-  cssEase: 'linear',
-  className: 'slider',
-  adaptiveHeight: true,
-  variableWidth: false,
-}
+const trusteesBg = ['#021017', '#1f171b', '#220415', '#0a2540']
+// const trusteesSlideSettings = {
+//   fade: true,
+//   autoplay: true,
+//   cssEase: 'linear',
+//   className: 'slider',
+//   adaptiveHeight: true,
+//   variableWidth: false,
+// }
 
 const handleContactForm = async ({ name, email, message }: ContactFormData) => {
   try {
@@ -52,17 +52,20 @@ const AboutUs: FC<Props> = ({ config, content }) => {
 
   return (
     <Layout config={config}>
-      <section className="hero-wrapper hero-wrapper-1 pt-32 md:pb-10 bg-repeat bg-center">
+      {/* <section className="hero-wrapper hero-wrapper-1 pt-32 md:pb-10 bg-repeat bg-center"> */}
+      <section className="primary-bg pt-32">
         <div className="sz-container px-6 relative z-10">
-          <div className="pt-10 pb-8">
+          {/* <div className="pt-10 pb-8"> */}
+          <div className="pt-10">
             {!!title && (
               <h1 className="secondary-font text-4xl text-center sm:w-96 sm:mx-auto">
                 {title}
               </h1>
             )}
 
-            <div className="mt-8 md:mt-16 mb-14 md:mb-0 w-full h-44 sm:h-64 md:h-80 lg:h-96 border border-gray-500 rounded-md md:max-w-xl lg:max-w-2xl md:mx-auto">
-              {!!youtube_id && (
+            {!!youtube_id && (
+              // <div className="mt-8 md:mt-16 mb-14 md:mb-0 w-full h-44 sm:h-64 md:h-80 lg:h-96 border border-gray-500 rounded-md md:max-w-xl lg:max-w-2xl md:mx-auto">
+              <div className="mt-8 md:mt-16 mb-14 md:mb-0 w-full h-44 sm:h-64 md:h-80 lg:h-96 border border-gray-500 rounded-md md:max-w-xl lg:max-w-2xl md:mx-auto">
                 <iframe
                   width="100%"
                   height="100%"
@@ -72,11 +75,12 @@ const AboutUs: FC<Props> = ({ config, content }) => {
                   src={`https://www.youtube.com/embed/${youtube_id}`}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 ></iframe>
-              )}
-            </div>
+              </div>
+            )}
 
             {!!description && (
-              <p className="text-center md:hidden">{description}</p>
+              // <p className="text-center md:hidden">
+              <p className="text-center mt-7 pb-20 md:hidden">{description}</p>
             )}
           </div>
         </div>
@@ -91,14 +95,16 @@ const AboutUs: FC<Props> = ({ config, content }) => {
       </section>
 
       <section className="primary-bg md-hero-wrapper">
-        <div className="sz-container px-6 py-8 md:pt-10 md:pb-0 md:relative md:z-10">
+        {/* <div className="sz-container px-6 py-8 md:pt-10 md:pb-0 md:relative md:z-10"> */}
+        <div className="sz-container px-6 py-8 md:pt-7 md:pb-0 md:relative md:z-10">
           {!!description && (
             <p className="text-center hidden md:block md:max-w-lg md:mx-auto md:mb-20">
               {description}
             </p>
           )}
 
-          <div className="md:flex md:flex-wrap md:-mx-2.5 md:mb-28">
+          {/* <div className="md:flex md:flex-wrap md:-mx-2.5 md:mb-28"> */}
+          <div className="md:flex md:flex-wrap md:-mx-2.5">
             <div className="hidden md:block md:w-1/2 md:px-2.5">
               <h2 className="secondary-font text-center text-4xl">Mission</h2>
 
@@ -120,8 +126,8 @@ const AboutUs: FC<Props> = ({ config, content }) => {
             </div>
           </div>
 
-          <div className="primary-bg -mx-6 mb-4 md:mb-0 md:pt-4 md:pb-16">
-            {!!carousel?.length && (
+          {!!(carousel?.length && carousel.length > 1) && (
+            <div className="primary-bg -mx-6 mb-4 md:mb-0 md:pt-4 md:pb-16">
               <Slider>
                 {carousel.map((str, i) => (
                   <div key={i} className="mr-4">
@@ -131,12 +137,28 @@ const AboutUs: FC<Props> = ({ config, content }) => {
                   </div>
                 ))}
               </Slider>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </section>
 
-      {!!trustees.length && (
+      <section className="primary-bg">
+        <div className="sz-container px-6 py-16 md:pt-40 md:pb-0">
+          <h1 className="secondary-font text-4xl text-center sm:w-96 sm:mx-auto">
+            Board of Trustees
+          </h1>
+
+          <p className="text-center mt-7 md:max-w-lg md:mx-auto">
+            The Sarz Academy board members are driven by a vision to grow the
+            Nigerian creative and entertainment industry by training young
+            creatives to realise their potential. The Academy is led by
+            Osabuohien Osaretin and Iredumare Opeyemi, who together represent
+            the two main pillars on which the purpose of The Sarz Academy rests.
+          </p>
+        </div>
+      </section>
+
+      {/* {!!trustees.length && (
         <Slider settings={trusteesSlideSettings}>
           {trustees.map(({ id, name, summary, imageURL }, i) => {
             return (
@@ -172,7 +194,38 @@ const AboutUs: FC<Props> = ({ config, content }) => {
             )
           })}
         </Slider>
-      )}
+      )} */}
+
+      {!!trustees.length &&
+        trustees.map(({ id, name, summary, imageURL }, i) => (
+          <section key={id} style={{ backgroundColor: trusteesBg[i] }}>
+            <div className="sz-container px-6 py-8 md:py-24 relative z-10">
+              <div className="md:flex md:flex-wrap md:items-center md:-mx-2.5">
+                <div className="mb-10 md:mb-0 md:w-1/2 md:px-2.5">
+                  <img
+                    alt={name}
+                    src={imageURL}
+                    className="w-72 h-auto object-cover mx-auto rounded-md"
+                  />
+                </div>
+
+                <div className="mb-6 md:mb-0 md:w-1/2 md:px-2.5 text-center md:text-left">
+                  {!!name && (
+                    <h2 className="secondary-font text-4xl md:max-w-sm md:mx-auto">
+                      {name}
+                    </h2>
+                  )}
+
+                  {summary && (
+                    <div className="mt-7 md:max-w-sm md:mx-auto">
+                      <p>{summary}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </section>
+        ))}
 
       <section className="hero-wrapper hero-wrapper-2">
         <div className="sz-container px-6 py-8 md:py-24 relative z-10">

@@ -210,7 +210,7 @@ const Support: FC<Props> = ({ config, content }) => {
 
   return (
     <Layout config={config}>
-      <section className="hero-wrapper hero-wrapper-1 pt-32 md:pb-10 bg-repeat bg-center">
+      <section className="primary-bg pt-32 md:pb-10">
         <div className="sz-container px-6 relative z-10">
           <div className="pt-10 pb-8">
             {!!title && (
@@ -569,7 +569,7 @@ const Support: FC<Props> = ({ config, content }) => {
           <SponsorForm
             title={currentPill}
             handleSubmit={handleSupportSubmission}
-            description="Let us know your questions, suggestions and concerns by filling out the form below."
+            description="Please fill out the form and we’ll respond to you as soon as possible."
           />
         )}
       </Modal>

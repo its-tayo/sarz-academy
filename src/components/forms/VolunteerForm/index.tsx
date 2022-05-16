@@ -46,8 +46,8 @@ const VolunteerForm: FC<FormProps<VolunteerFormData>> = ({ handleSubmit }) => {
             <div className="color-primary text-center mb-10">
               <h3 className="secondary-font text-4xl mb-4">Volunteer</h3>
               <p className="text-sm">
-                Let us know your questions, suggestions and concerns by filling
-                out the form below
+                Please fill out the form and we’ll respond to you as soon as
+                possible.
               </p>
             </div>
 

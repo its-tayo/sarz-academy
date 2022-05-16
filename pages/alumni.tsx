@@ -30,7 +30,7 @@ const Alumni: FC<Props> = ({ config, content }) => {
               <div className="mt-10 md:mt-0 md:w-1/2 md:px-2.5">
                 {!!image_url && (
                   <img
-                    alt="dummy"
+                    alt="title"
                     src={image_url}
                     className="w-full h-auto object-cover rounded-md"
                   />
@@ -70,24 +70,31 @@ const Alumni: FC<Props> = ({ config, content }) => {
                     </div>
 
                     <div className="mb-12 md:mb-0 md:px-5 md:w-1/3 xl:order-3">
-                      <div className="mb-5">
-                        <img
-                          alt={project_title}
-                          src={project_image_url}
-                          className="w-full h-auto object-cover rounded-md"
-                        />
-                      </div>
+                      {!!project_image_url && (
+                        <div className="mb-5">
+                          <img
+                            alt={project_title}
+                            src={project_image_url}
+                            className="w-full h-auto object-cover rounded-md"
+                          />
+                        </div>
+                      )}
 
-                      <h3 className="secondary-font text-3xl">
-                        {project_title}
-                      </h3>
-                      <a
-                        target="_blank"
-                        href={project_link}
-                        rel="noreferrer noopener"
-                      >
-                        View class project
-                      </a>
+                      {!!project_title && (
+                        <h3 className="secondary-font text-3xl">
+                          {project_title}
+                        </h3>
+                      )}
+
+                      {!!project_link && (
+                        <a
+                          target="_blank"
+                          href={project_link}
+                          rel="noreferrer noopener"
+                        >
+                          View class project
+                        </a>
+                      )}
                     </div>
 
                     <div className="md:px-5 md:w-2/3 xl:w-1/3 xl:flex-1 xl:order-2">
