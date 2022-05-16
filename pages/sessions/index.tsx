@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 import axios from 'axios'
 
 import { theme } from 'src/styles/theme'
@@ -14,8 +14,17 @@ type Props = {
 
 const { colors } = theme
 
+const TEMP_REGISTRATION_LINK =
+  'https://docs.google.com/forms/d/e/1FAIpQLSfKAmIqV91K9UgzfmvFo-EEcxeqZOU6B_m1HbbscmXqHuO_OA/viewform'
+
+const externalRouting = () => {
+  if (window && typeof window !== 'undefined') {
+    ;(window as any).location = TEMP_REGISTRATION_LINK
+  }
+}
+
 const Sessions: FC<Props> = ({ config, content }) => {
-  const router = useRouter()
+  // const router = useRouter()
   const [showAll, setShowAll] = useState(true)
 
   const {
@@ -25,11 +34,11 @@ const Sessions: FC<Props> = ({ config, content }) => {
     sessions = [],
   } = content as SessionsProps
 
-  const navHelper = (path?: string) => {
-    if (path) {
-      router.push(path)
-    }
-  }
+  // const navHelper = (path?: string) => {
+  //   if (path) {
+  //     router.push(path)
+  //   }
+  // }
 
   return (
     <Layout config={config}>
@@ -111,7 +120,8 @@ const Sessions: FC<Props> = ({ config, content }) => {
                     bgImageSrc={imageURL}
                     content={description}
                     btnLabel={completed ? 'View' : 'Register'}
-                    onClick={() => navHelper(`/sessions/${id}`)}
+                    // onClick={() => navHelper(`/sessions/${id}`)}
+                    onClick={externalRouting}
                   />
                 </div>
               ))}
